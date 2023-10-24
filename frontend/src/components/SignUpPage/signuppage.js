@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import "./signuppage.css";
@@ -41,21 +41,23 @@ function Signup() {
   }
 
   return (
-    <div className="container">
-      <img
-        className="bg-img"
-        src={process.env.PUBLIC_URL + "/assets/background_image.jpg"}
-        alt="bg-img-loader"
-      />
+    <div className=",
+    containerr">
+      <div className="box">
+
+      <div className="signup-image-container">
+        <img
+          className="bg-img1"
+          src={process.env.PUBLIC_URL + "/assets/background_image.jpeg"}
+          alt="bg-img-loader"
+          />
+      </div>
       <div className="signup-container">
-        <h1 className="signup-container-heading">Signup</h1>
-        <hr
-          style={{
-            marginBottom: "1rem",
-            marginTop: "-1rem",
-            width: "17.5rem",
-          }}
-        />
+        <h1 className="signup-container-heading">SignUp</h1>
+        <div className="signup-hr-div">
+          <p className="signup-hr"></p>
+        </div>
+
         <form className="signup-form" action="POST">
           <input
             type="email"
@@ -71,7 +73,7 @@ function Signup() {
             }}
             placeholder="Password"
           />
-          <input
+            <input
             type="password"
             onChange={(e) => {
               setConfirmPassword(e.target.value);
@@ -80,17 +82,20 @@ function Signup() {
           />
           <input type="submit" onClick={submit} />
         </form>
-        <br />
-        <p className="divider" style={{ color: "white" }}>
+
+        <div className="signup-divider-div">
+        <p className="signup-divider" style={{ color: "blanchedalmond" }}>
           Or
         </p>
-        <br />
-        <div style={{ color: "white" }}>
-          Already have an account?{" "}
+        </div>
+        <div className="last-text">
+          <p>Already have an account?</p>
           <Link to="/" className="link">
-            Sign in
+            <p className="link">Sign in</p> 
           </Link>
         </div>
+   
+      </div>
       </div>
     </div>
   );

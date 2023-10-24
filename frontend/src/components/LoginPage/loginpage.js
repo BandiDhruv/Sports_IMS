@@ -35,21 +35,20 @@ function Login() {
   }
 
   return (
-    <div className="container">
-      <img
-        className="bg-img"
-        src={process.env.PUBLIC_URL + "/assets/background_image.jpg"}
-        alt="bg-img-loader"
-      />
+    <div className="containerr">
+      <div className="box">
+      <div className="login-image-container">
+        <img
+          className="bg-img1"
+          src={process.env.PUBLIC_URL + "/assets/background_image.jpeg"}
+          alt="bg-img-loader"
+          />
+      </div>
       <div className="login-container">
         <h1 className="login-container-heading">Login</h1>
-        <hr
-          style={{
-            marginBottom: "1rem",
-            marginTop: "-1rem",
-            width: "18rem",
-          }}
-        />
+        <div className="login-hr-div">
+          <p className="login-hr"></p>
+        </div>
 
         <form className="login-form" action="POST">
           <input
@@ -58,7 +57,7 @@ function Login() {
               setEmail(e.target.value);
             }}
             placeholder="Email"
-          />
+            />
           <input
             type="password"
             onChange={(e) => {
@@ -69,19 +68,19 @@ function Login() {
           <input type="submit" onClick={submit} />
         </form>
 
-        <br />
-        <p className="divider" style={{ color: "white" }}>
+        <div className="login-divider-div">
+        <p className="login-divider" style={{ color: "blanchedalmond" }}>
           Or
         </p>
-        <br />
+        </div>
 
-        <div style={{ color: "white" }}>
-          {" "}
-          Don't have an account?{" "}
+        <div className="last-text">
+          <p>Don't have an account?</p>
           <Link to="/signup" className="link">
-            Sign up{" "}
+            <p className="link">Sign up</p> 
           </Link>
         </div>
+      </div>
       </div>
     </div>
   );

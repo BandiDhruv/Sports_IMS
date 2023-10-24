@@ -1,87 +1,149 @@
-.container {
+.containerr{
     display: flex;
-    flex-direction: column;
+    background-color: blanchedalmond;
     align-items: center;
     justify-content: center;
     height: 100vh;
     width: 100vw;
-    flex-wrap: wrap;
 }
-.bg-img{
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
+.box {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-evenly;
+    align-items: center;
+    height: 80vh;
+    width: 80vw;
+    background-image: linear-gradient(to right,rgb(105, 135, 129), rgb(39, 63, 73));
+    border-radius: 1rem;
+}
+.signup-image-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover; 
+    height: 60vh;
+    width: 50%;
+}
+.bg-img1{
+    height: 100%;
+    width: 100%;
+}
+.bg-img2{
+    display: none;
 }
 .signup-container {
-    position: absolute;
-    left: 68%;
-    /* background-color: rgb(83, 87, 93); */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: 1rem;
-    padding: 2rem;
+    height: 50vh;
+    width: 35%;
 }
 
 .signup-form {
+    
+    /* flex: 1; */
     display: flex;
+    align-items: center;
     flex-direction: column;
     gap: 2rem;
 }
 
 .signup-container-heading {
-    color: white;
+    color:blanchedalmond;
     font-size: 3rem;
+}
+.signup-hr-div
+{
+    display: flex;
+    justify-content: center;
+    width: 52%;
+}
+.signup-hr{
+    border-top: 1px solid blanchedalmond;
+    margin-top: -1rem;
+    width: 100%;
 }
 
 
 .signup-form input[type="email"],
 .signup-form input[type="password"],
 .signup-form input[type="submit"] {
+    display: flex;
+    justify-content: center;
+    width: 80%;
     background-color: transparent;
-    border: 1px solid white;
+    border: 1px solid blanchedalmond;
     padding: 0.65rem;
     border-radius: .5rem;
-    color: white;
+    color: blanchedalmond;
 }
 
 .signup-form input[type="email"]::placeholder,
 .signup-form input[type="password"]::placeholder {
-    color: white;
+    color: blanchedalmond;
 }
 
 .signup-form input[type="submit"] {
-    color: white;
+    color: blanchedalmond;
     cursor: pointer;
+    background-color:transparent;
     transition: ease-in-out background-color color .5s;
 }
 .signup-form input[type="submit"]:hover{
-    background-color: rgb(236, 236, 236);
+    background-color: blanchedalmond;
     color:rgb(48, 44, 44);
 }
-
-.divider {
+.signup-divider-div{
+    width: 55%;
+}
+.signup-divider {
     font-size: 15px;
     display: flex;
     align-items: center;
   }
   
-  .divider::before, .divider::after {
-    flex: 1;
+.signup-divider::before, .signup-divider::after {
     content: '';
     padding: .5px;
-    width: 8rem;
-    background-color: whitesmoke;
-    margin: 1.5px;
-  }
-
-.link {
-    color: white;
+    width: 100%;
+    background-color: blanchedalmond;
+}
+.last-text{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.last-text p {
+    color: blanchedalmond;
+    margin-inline-start:7px;
+}
+.link{
     text-decoration: none;
-    transition: color 0.15s;
+    
+}
+.link:hover {   
+    color: rgb(0, 17, 206);
 }
 
-.link:hover {
-    color: rgb(100, 100, 237);
+@media screen and (max-width:550px){
+    
+    .box{
+        flex-direction: column;
+        align-items: center;
+        background-image: linear-gradient(to bottom,rgb(105, 135, 129), rgb(39, 63, 73));
+        padding: 1rem;
+    }
+    .signup-image-container{
+        width: 100%;
+        height: 40%;
+    }
+    .signup-container{
+        width: 100%;
+        height: 60%;
+    }
+    .signup-form {
+        gap: 1rem;
+    } 
 }
