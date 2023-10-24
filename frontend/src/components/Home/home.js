@@ -59,17 +59,22 @@ function Home() {
             <Card imagen="./assets/carrom.webp" text={"Carrom"}/>
           )
         },
+        {
+          key: uuidv4(),
+          content: (
+            <Card imagen="./assets/squash.webp" text={"Squash"}/>
+          )
+        },
       ];
   return (
     <div className="home-container">
-    
       <Carousel
+        height="100px"
         cards={cards}
-        // height="10rem"
-        width="100%"
-        margin="30rem auto"
-        offset={200}
+        width="50%"
+        offset={2}
         showArrows={false}
+        // className="home-container"
       />
     </div>
   );

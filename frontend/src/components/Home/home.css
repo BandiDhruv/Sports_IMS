@@ -1,4 +1,9 @@
-body{
-    background-color: rgb(20, 19, 19);
-    
+.home-container
+{
+    height: 100vh;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: radial-gradient(rgb(143, 198, 251),black);
 }
