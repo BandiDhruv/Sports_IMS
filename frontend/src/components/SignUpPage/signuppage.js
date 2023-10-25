@@ -41,10 +41,20 @@ function Signup() {
   }
 
   return (
-    <div className=",
-    containerr">
+    <div className="containerr">
       <div className="box">
 
+      <div className="box1">
+            {/* <div className="login-heading">
+               <h1>INVENTORY MANAGEMENT SYSTEM</h1>
+            </div> */}
+
+            <div className="signup-logo">
+              <img className="signup-img " src="https://www.lnmiit.ac.in/images/logo.png" />
+            </div>
+      </div>
+      
+      <div className="box2">
       <div className="signup-image-container">
         <img
           className="bg-img1"
@@ -84,7 +94,7 @@ function Signup() {
         </form>
 
         <div className="signup-divider-div">
-        <p className="signup-divider" style={{ color: "blanchedalmond" }}>
+        <p className="signup-divider" style={{ color: "white" }}>
           Or
         </p>
         </div>
@@ -96,6 +106,9 @@ function Signup() {
         </div>
    
       </div>
+      </div>
+
+      
       </div>
     </div>
   );
