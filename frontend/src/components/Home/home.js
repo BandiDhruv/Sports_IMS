@@ -2,67 +2,74 @@ import { v4 as uuidv4 } from "uuid";
 import Card from "./Card";
 import Carousel from './slider';
 import "./home.css"
-
+import {Link} from "react-router-dom";
+import { useParams } from "react-router-dom";
 function Home() {
+  const buttonClick = (text) => {
+    // text.append()
+    console.log('Button is clicked')
+    return <Link to={`/${text}`}/>
+    ;}
+
     let cards = [
         {
           key: uuidv4(),
           content: (
-            <Card imagen="./assets/basketball.jpg" text={"Basketball"}/>
+            <Card imagen="./assets/basketball.jpg" text={"Basketball"} onClick={buttonClick}/>
           )
         },
         {
           key: uuidv4(),
           content: (
-            <Card imagen="./assets/cricket.jpg" text={"Cricket"}/>
+            <Card imagen="./assets/cricket.jpg" text={"Cricket"} onClick={buttonClick}/>
           )
         },
         {
           key: uuidv4(),
           content: (
-            <Card imagen="./assets/football.jpg" text={"Football"}/>
+            <Card imagen="./assets/football.jpg" text={"Football"} onClick={buttonClick}/>
           )
         },
         {
           key: uuidv4(),
           content: (
-            <Card imagen="./assets/badminton.jpg" text={"Badminton"} />
+            <Card imagen="./assets/badminton.jpg" text={"Badminton"} onClick={buttonClick} />
           )
         },
         {
           key: uuidv4(),
           content: (
-            <Card imagen="./assets/volleyball.jpeg" text={"Volleyball"}/>
+            <Card imagen="./assets/volleyball.jpeg" text={"Volleyball"} onClick={buttonClick}/>
           )
         },
         {
           key: uuidv4(),
           content: (
-            <Card imagen="./assets/tabletennis.jpg" text={"Tabletennis"}/>
+            <Card imagen="./assets/tabletennis.jpg" text={"Tabletennis"} onClick={buttonClick}/>
           )
         },
         {
           key: uuidv4(),
           content: (
-            <Card imagen="./assets/tennis.webp" text={"Tennis"}/>
+            <Card imagen="./assets/tennis.webp" text={"Tennis"} onClick={buttonClick}/>
           )
         },
         {
           key: uuidv4(),
           content: (
-            <Card imagen="./assets/chess.jpg" text={"Chess"}/>
+            <Card imagen="./assets/chess.jpg" text={"Chess"} onClick={buttonClick}/>
           )
         },
         {
           key: uuidv4(),
           content: (
-            <Card imagen="./assets/carrom.webp" text={"Carrom"}/>
+            <Card imagen="./assets/carrom.webp" text={"Carrom"} onClick={buttonClick}/>
           )
         },
         {
           key: uuidv4(),
           content: (
-            <Card imagen="./assets/squash.webp" text={"Squash"}/>
+            <Card imagen="./assets/squash.webp" text={"Squash"} onClick={buttonClick}/>
           )
         },
       ];

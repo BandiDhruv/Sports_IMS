@@ -4,7 +4,7 @@ import { useSpring, animated } from "react-spring";
 import Button from "./Button";
 
 
-function Card({ imagen,text }) {
+function Card({ imagen,text,onClick }) {
     const [show, setShown] = useState(false);
   
     const props3 = useSpring({
@@ -14,6 +14,7 @@ function Card({ imagen,text }) {
         : "0 2px 10px rgb(0 0 0 / 8%)",
     });
   
+
     return React.createElement(
       "animated.div",
       {
@@ -29,7 +30,7 @@ function Card({ imagen,text }) {
       React.createElement(
         "div",
         { className: Styles.btnn },
-        React.createElement(Button, { text: "See Inventory" }),
+        React.createElement(Button, { text: "See Inventory" ,onClick: () => onClick(text)}),
       )
     );
   }
