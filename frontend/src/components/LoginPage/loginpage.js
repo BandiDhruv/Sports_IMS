@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import "./loginpage.css";
+// import {logo} from ""
 
 function Login() {
   const history = useNavigate();
@@ -35,8 +36,20 @@ function Login() {
   }
 
   return (
-    <div className="containerr">
-      <div className="box">
+  <div className="containerr">
+    <div className="box">
+
+    <div className="box1">
+            {/* <div className="logo">
+               <img src={logo}/>
+            </div> */}
+            
+            <div className="login-logo">
+              <img className="login-img" src="https://www.lnmiit.ac.in/images/logo.png" />
+            </div>
+      </div>
+      
+      <div className="box2">
       <div className="login-image-container">
         <img
           className="bg-img1"
@@ -44,12 +57,12 @@ function Login() {
           alt="bg-img-loader"
           />
       </div>
+
       <div className="login-container">
         <h1 className="login-container-heading">Login</h1>
         <div className="login-hr-div">
           <p className="login-hr"></p>
         </div>
-
         <form className="login-form" action="POST">
           <input
             type="email"
@@ -67,13 +80,11 @@ function Login() {
           />
           <input type="submit" onClick={submit} />
         </form>
-
         <div className="login-divider-div">
-        <p className="login-divider" style={{ color: "blanchedalmond" }}>
+        <p className="login-divider" style={{ color: "white" }}>
           Or
         </p>
         </div>
-
         <div className="last-text">
           <p>Don't have an account?</p>
           <Link to="/signup" className="link">
@@ -81,8 +92,11 @@ function Login() {
           </Link>
         </div>
       </div>
-      </div>
+
     </div>
+
+    </div>
+  </div>
   );
 }
 
