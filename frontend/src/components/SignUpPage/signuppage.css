@@ -1,21 +1,52 @@
 .containerr{
     display: flex;
-    background-color: blanchedalmond;
+    background-color: white;
     align-items: center;
     justify-content: center;
     height: 100vh;
     width: 100vw;
 }
-.box {
+.box1{
+    display: flex;
+   justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 10vh;
+    width: 100vw;
+    /* background-image: linear-gradient(to right,rgb(105, 135, 129), rgb(39, 63, 73));   */
+   
+}
+.box2{
     display: flex;
     flex-direction: row; 
     justify-content: space-evenly;
     align-items: center;
-    height: 80vh;
-    width: 80vw;
-    background-image: linear-gradient(to right,rgb(105, 135, 129), rgb(39, 63, 73));
-    border-radius: 1rem;
+    height: 90vh;
+    width: 100vw;
+    /* background-image: linear-gradient(to right,rgb(105, 135, 129), rgb(39, 63, 73));  */
 }
+.box {
+    display: flex;
+    flex-direction: column; 
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    height: 100vh;
+    width: 100vw;
+    background-image: linear-gradient(to right,rgb(105, 135, 129), rgb(39, 63, 73)); 
+   
+}
+
+.signup-logo{
+    top: 0;
+    right: 0;
+    position: absolute;
+}
+
+.signup-img{
+    height: 4rem;
+    width: 8rem;
+}
+
 .signup-image-container{
     display: flex;
     justify-content: center;
@@ -23,6 +54,7 @@
     object-fit: cover; 
     height: 60vh;
     width: 50%;
+    margin-bottom: 3rem;
 }
 .bg-img1{
     height: 100%;
@@ -38,6 +70,7 @@
     justify-content: center;
     height: 50vh;
     width: 35%;
+    margin-bottom: 5rem;
 }
 
 .signup-form {
@@ -50,7 +83,7 @@
 }
 
 .signup-container-heading {
-    color:blanchedalmond;
+    color:white;
     font-size: 3rem;
 }
 .signup-hr-div
@@ -60,7 +93,7 @@
     width: 52%;
 }
 .signup-hr{
-    border-top: 1px solid blanchedalmond;
+    border-top: 1px solid white;
     margin-top: -1rem;
     width: 100%;
 }
@@ -73,25 +106,25 @@
     justify-content: center;
     width: 80%;
     background-color: transparent;
-    border: 1px solid blanchedalmond;
+    border: 1px solid white;
     padding: 0.65rem;
     border-radius: .5rem;
-    color: blanchedalmond;
+    color: white;
 }
 
 .signup-form input[type="email"]::placeholder,
 .signup-form input[type="password"]::placeholder {
-    color: blanchedalmond;
+    color: white;
 }
 
 .signup-form input[type="submit"] {
-    color: blanchedalmond;
+    color: white;
     cursor: pointer;
     background-color:transparent;
     transition: ease-in-out background-color color .5s;
 }
 .signup-form input[type="submit"]:hover{
-    background-color: blanchedalmond;
+    background-color: white;
     color:rgb(48, 44, 44);
 }
 .signup-divider-div{
@@ -107,7 +140,7 @@
     content: '';
     padding: .5px;
     width: 100%;
-    background-color: blanchedalmond;
+    background-color: white;
 }
 .last-text{
     display: flex;
@@ -116,7 +149,7 @@
     
 }
 .last-text p {
-    color: blanchedalmond;
+    color: white;
     margin-inline-start:7px;
 }
 .link{
@@ -125,15 +158,22 @@
 }
 .link:hover {   
     color: rgb(0, 17, 206);
+    
 }
 
 @media screen and (max-width:550px){
     
+    /* .box1{
+        background-image: linear-gradient(to bottom,rgb(105, 135, 129), rgb(39, 63, 73));
+    } */
     .box{
+        width: 100vw;
+    }
+    .box2{
         flex-direction: column;
         align-items: center;
-        background-image: linear-gradient(to bottom,rgb(105, 135, 129), rgb(39, 63, 73));
-        padding: 1rem;
+        /* background-image: linear-gradient(to bottom,rgb(105, 135, 129), rgb(39, 63, 73)); */
+        /* padding: 1rem; */
     }
     .signup-image-container{
         width: 100%;
