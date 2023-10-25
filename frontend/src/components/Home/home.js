@@ -2,13 +2,11 @@ import { v4 as uuidv4 } from "uuid";
 import Card from "./Card";
 import Carousel from './slider';
 import "./home.css"
-import {Link} from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 function Home() {
+  const navigate = useNavigate();
   const buttonClick = (text) => {
-    // text.append()
-    console.log('Button is clicked')
-    return <Link to={`/${text}`}/>
+    navigate(`/${text}`)
     ;}
 
     let cards = [
