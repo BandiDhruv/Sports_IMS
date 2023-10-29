@@ -2,7 +2,9 @@ import { v4 as uuidv4 } from "uuid";
 import Card from "./Card";
 import Carousel from './slider';
 import "./home.css"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../Navbar/navbar"
+import { MenuItems } from "../Navbar/MenuItems";
 function Home() {
   const navigate = useNavigate();
   const buttonClick = (text) => {
@@ -73,15 +75,32 @@ function Home() {
       ];
   return (
     <div className="home-container">
-      <Carousel
-        height="100px"
-        cards={cards}
-        width="50%"
-        offset={2}
-        showArrows={false}
-        // className="home-container"
-      />
-    </div>
+      <div id="navbar">
+      <Navbar />
+      </div>
+      <div className="left">
+        <h1 className="left-panel-heading">Select Sports</h1>
+        <div className="left-panel-contents"  >
+        {MenuItems.map((item)=>{
+          return(
+            <li className="left-panel-list" >
+              <Link className="left-panel-link" to={item.path} >{item.title}</Link>
+            </li>
+          )
+        })}
+        </div>
+      </div>
+      <div className="right">
+        <Carousel
+          height="90%"
+          cards={cards}
+          width="75%"
+          offset={2}
+          showArrows={false}
+          // className="home-container"
+          />
+      </div>
+      </div>
   );
 }
 

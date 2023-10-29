@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import "./loginpage.css";
-// import {logo} from ""
 
 function Login() {
   const history = useNavigate();
@@ -41,11 +40,11 @@ function Login() {
 
     <div className="box1">
             {/* <div className="logo">
-               <img src={logo}/>
+              { <img className="login-img"src={process.env.PUBLIC_URL + "/assets/logo1.png"}/> }
+              <h1 className="login-img">LNM SPORTS INVENTORY</h1>
             </div> */}
-            
-            <div className="login-logo">
-              <img className="login-img" src="https://www.lnmiit.ac.in/images/logo.png" />
+            <div className="lnmiit-logo">
+              <img className="lnmiit-img" src={process.env.PUBLIC_URL + "/assets/LNMIIT-LOGO.png"} />
             </div>
       </div>
       

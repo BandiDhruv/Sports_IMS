@@ -1,9 +1,117 @@
 .home-container
 {
-    height: 100vh;
-    width: auto;
     display: flex;
+    z-index: 0;
+    height: 100vh;
+    width: 100vw;
+    /* margin-top: 1rem; */
+    flex-direction: row;
+    width: auto;
     align-items: center;
     justify-content: center;
-    background-image: radial-gradient(rgb(143, 198, 251),black);
+    }
+.left
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 100%;
+    /* background-color: rgb(22, 40, 80); */
+    /* background-color: #1888ff; */
+    /* overflow-y: scroll; */
+    background-color: #f2f3f5;
+}
+.left:hover{
+    background-color: rgb(238, 238, 238);
+    /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; */
+    
+}
+.left-panel-heading{
+    position: absolute;
+    top: 10%;
+    /* margin-bottom: 1px; */
+    /* border-bottom: 2px solid rgb(230, 228, 228); */
+
+    color: black;
+    /* background-color: black; */
+}
+.left-panel-contents{
+    /* color: black; */
+    position: absolute;
+    top: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    text-align: center;
+    cursor: pointer;
+    border-top:  solid rgb(230, 228, 228);
+    /* overflow-y: scroll; */
+
+
+}
+.left-panel-list {
+    width: 100%;
+    padding: 1.29rem 0rem;
+    list-style: none
+}
+
+.left-panel-list:hover {
+    background-color: rgb(22, 40, 80);
+}
+.left-panel-list:hover .left-panel-link{
+    color: white;
+}
+.left-panel-link{
+    text-decoration: none;
+    color: black;
+    /* color: white;    */
+}
+
+.right
+{
+    /* background-image: radial-gradient(rgb(143, 198, 251),rgb(36, 36, 36)); */
+background-color: rgb(22, 40, 80);
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: right;
+    justify-content: center;
+    width: 80%;
+    background-color: #f2f3f5;
+    border-left: 2px solid rgb(230, 228, 228);
+}
+.right:hover{
+    background-color: rgb(238, 238, 238);
+
+}
+@media screen and (max-width:980px){
+    .left-panel-heading{
+        top: 13%;
+        text-align: center;
+        font-size: 1.5rem;
+        margin-bottom: 5rem;
+        /* padding: 1rem; */
+           }
+    .left-panel-contents{
+        top: 23%;
+           }
+    .left-panel-list{
+        font-size: 10px;
+    }
+}
+@media screen and (max-width:650px) {
+    .left{
+        width: 0%;
+        display: none;
+    }
+    .right
+    {
+        width: 100%;
+    }
+    
+
 }

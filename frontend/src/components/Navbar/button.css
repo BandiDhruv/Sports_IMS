@@ -1,0 +1,40 @@
+:root{
+    --primary:#1888ff;
+}
+.btns{
+    margin-right: 1rem;
+    padding: .5rem 1.25rem;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    color: white;
+    background-color: var(--primary);  
+    cursor: pointer;
+    width: 8rem;
+    /* font-weight: bold; */
+    height: 3rem;
+}
+.btns:hover{
+    padding: .75rem 1.5rem;
+    transition: all .3s ease-out;
+    background-color: transparent;
+    /* color: black; */
+    border-radius: 4px;
+    background-color: #5cabff;
+    /* border: 2px solid var(--primary); */
+}
+@media screen and (max-width:550px) {
+    .btns{
+        width: 5.5rem;
+        height: 2.5rem;
+        font-size: 10px;
+    }
+}
+@media screen and (max-width:360px) {
+    .btns{
+        width: 4rem;
+        
+        height: 2.5rem;
+        font-size: 8px;
+    }
+}

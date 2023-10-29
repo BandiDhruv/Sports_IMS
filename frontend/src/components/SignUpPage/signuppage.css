@@ -36,17 +36,28 @@
    
 }
 
-.signup-logo{
+.lnmiit-logo{
     top: 0;
     right: 0;
     position: absolute;
 }
 
-.signup-img{
+.lnmiit-img{
     height: 4rem;
     width: 8rem;
 }
 
+/* .logo{
+    top: 4%;
+    left: 1%;
+    position: absolute;
+
+}
+.login-img{
+    cursor: pointer;
+    height: 2rem;
+    width: 8rem ;
+} */
 .signup-image-container{
     display: flex;
     justify-content: center;
@@ -169,11 +180,20 @@
     .box{
         width: 100vw;
     }
+    /* .login-img{
+        height: 1.5rem;
+        width: 15rem;
+    } */
     .box2{
+        justify-content: space-between;
         flex-direction: column;
         align-items: center;
         /* background-image: linear-gradient(to bottom,rgb(105, 135, 129), rgb(39, 63, 73)); */
         /* padding: 1rem; */
+    }
+    .lnmiit-img{
+        height: 3rem;
+        width: 6rem;
     }
     .signup-image-container{
         width: 100%;

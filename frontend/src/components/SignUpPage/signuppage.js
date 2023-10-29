@@ -45,12 +45,11 @@ function Signup() {
       <div className="box">
 
       <div className="box1">
-            {/* <div className="login-heading">
-               <h1>INVENTORY MANAGEMENT SYSTEM</h1>
+            {/* <div className="logo">
+              <img className="login-img"src={process.env.PUBLIC_URL + "/assets/logo1.png"}/>
             </div> */}
-
-            <div className="signup-logo">
-              <img className="signup-img " src="https://www.lnmiit.ac.in/images/logo.png" />
+            <div className="lnmiit-logo">
+              <img className="lnmiit-img" src={process.env.PUBLIC_URL + "/assets/LNMIIT-LOGO.png"} />
             </div>
       </div>
       

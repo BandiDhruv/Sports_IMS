@@ -20,7 +20,7 @@ export default function Caroussel(props) {
 
   return (
     <div 
-      style={{ width: props.width, height: props.height, margin: props.margin }}
+      style={{ width: props.width, height: props.height, margin: props.margin}}
     >
       <Carousell
         slides={cards}
