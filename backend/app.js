@@ -1,12 +1,15 @@
-const collection = require("./mongo")
-const cors = require("cors")
-const express = require("express")
-const app = express()
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(cors())
+// import collection from "./mongo.js";
+import cors from "cors";
+import express from "express";
+import SportsDetails from "./models/Sports.js";
+import SportsInfo from "./data/data.js";
+import mongoose from "mongoose";
+import StudentInfo from "./models/StudentDetails.js";
 
-
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 app.get("/",cors(),(req,res)=>{
 
@@ -17,7 +20,7 @@ app.post("/",async(req,res)=>{
     const{email,password}=req.body
 
     try{
-        const check=await collection.findOne({email:email})
+        const check=await StudentInfo.findOne({email:email})
 
         if(check){
             res.json("exist")
@@ -44,14 +47,14 @@ app.post("/signup",async(req,res)=>{
     }
 
     try{
-        const check=await collection.findOne({email:email})
+        const check=await Student.findOne({email:email})
 
         if(check){
             res.json("exist")
         }
         else{
             res.json("notexist")
-            await collection.insertMany([data])
+            await Student.insertMany([data])
         }
 
     }
@@ -61,6 +64,16 @@ app.post("/signup",async(req,res)=>{
 
 })
 
+const databaseName = "logindetails"; 
+mongoose.connect(`mongodb+srv://dhruvbandi:dhruvbandi@cluster0.vfq2isd.mongodb.net/${databaseName}`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+const connection = mongoose.connection;
+connection.once('open', () => {
+  console.log("Connected to MongoDB!"); 
+});
 app.listen(8000,()=>{
     console.log("port connected");
+    // SportsDetails.insertMany(SportsInfo) 
 })
