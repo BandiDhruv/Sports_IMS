@@ -1,0 +1,36 @@
+.full-box{
+    height: 100vh;
+    width: 100vw;
+}
+.navbarr{
+    height: 10%;
+}
+.cricket-container{
+    height: 90%;
+    background-color: bisque;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 20rem;
+    width: 15rem;
+    gap: 1rem;
+    background-color: whitesmoke;
+
+}
+.item-heading{
+    background-color: red;
+    height: 45%;
+    width: 50%;
+}
+.item-quantity{
+    height: 45%;
+    width: 50%;
+    background-color: green;
+}
