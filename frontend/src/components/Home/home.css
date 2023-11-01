@@ -40,7 +40,7 @@
 .left-panel-contents{
     /* color: black; */
     position: absolute;
-    top: 20%;
+    top: 19%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -90,7 +90,7 @@ background-color: rgb(22, 40, 80);
 }
 @media screen and (max-width:980px){
     .left-panel-heading{
-        top: 13%;
+        top: 10%;
         text-align: center;
         font-size: 1.5rem;
         margin-bottom: 5rem;
@@ -110,8 +110,10 @@ background-color: rgb(22, 40, 80);
     }
     .right
     {
+        height: 90vh;
         width: 100%;
     }
+
     
 
 }
