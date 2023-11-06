@@ -8,7 +8,8 @@ const Sports = new mongoose.Schema({
   Inventory: [{
     nameOfSportsEquipment: { type: String },
     quantityOfSportsEquipment: { type: Number },
-    isDamaged: { type: Boolean }
+    isDamaged: { type: Boolean },
+    imageLink:{type: String}
   }]
 });
 

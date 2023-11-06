@@ -11,5 +11,5 @@ const StudentDetails = new mongoose.Schema({
   },
 });
 
-const StudentInfo = mongoose.model("studentinfo", StudentDetails);
+const StudentInfo = mongoose.model("studentinfos", StudentDetails);
 export default StudentInfo;
