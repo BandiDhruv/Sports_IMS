@@ -83,27 +83,29 @@ function Home() {
       <div id="navbar">
       <Navbar />
       </div>
-      <div className="left">
-        <h1 className="left-panel-heading">Select Sports</h1>
-        <div className="left-panel-contents"  >
-        {MenuItems.map((item)=>{
-          return(
-            <li className="left-panel-list" >
-              <Link className="left-panel-link" to={{ pathname:`/Sports/${item.title}` , state: { title: item.title } }}>{item.title}</Link>
-            </li>
-          )
-        })}
+      <div className="home-div">
+        <div className="left">
+          <div className="left-panel-heading">Select Sports</div>
+          <div className="left-panel-contents"  >
+          {MenuItems.map((item)=>{
+            return(
+              <li className="left-panel-list" >
+                <Link className="left-panel-link" to={item.path} >{item.title}</Link>
+              </li>
+            )
+          })}
+          </div>
         </div>
-      </div>
-      <div className="right">
-        <Carousel
-          height="90%"
-          cards={cards}
-          width="75%"
-          offset={2}
-          showArrows={false}
-          // className="home-container"
-          />
+        <div className="right">
+          <Carousel
+            height="90%"
+            cards={cards}
+            width="75%"
+            offset={2}
+            showArrows={false}
+            // className="home-container"
+            />
+        </div>
       </div>
       </div>
   );
