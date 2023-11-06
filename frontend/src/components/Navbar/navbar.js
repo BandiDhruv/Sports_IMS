@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import "./navbar.css";
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faBars, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faTimes, faBars, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 // import { useNavigate } from 'react-router-dom';
 import Button from './button';
 
