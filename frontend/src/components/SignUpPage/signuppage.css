@@ -96,12 +96,14 @@
 .signup-container-heading {
     color:white;
     font-size: 3rem;
+    margin-bottom: 1rem;
 }
 .signup-hr-div
 {
     display: flex;
     justify-content: center;
     width: 52%;
+    margin-top: 1rem;
 }
 .signup-hr{
     border-top: 1px solid white;
@@ -133,6 +135,7 @@
     cursor: pointer;
     background-color:transparent;
     transition: ease-in-out background-color color .5s;
+    margin-bottom: 1rem;
 }
 .signup-form input[type="submit"]:hover{
     background-color: white;

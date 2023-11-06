@@ -5,74 +5,79 @@ import "./home.css"
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/navbar"
 import { MenuItems } from "../Navbar/MenuItems";
+
+
 function Home() {
   const navigate = useNavigate();
   const buttonClick = (text) => {
-    navigate(`/${text}`)
+    console.log(text);
+    navigate(`/Sports/${text}`);
     ;}
 
     let cards = [
-        {
-          key: uuidv4(),
-          content: (
-            <Card imagen="./assets/basketball.jpg" text={"Basketball"} onClick={buttonClick}/>
-          )
-        },
-        {
-          key: uuidv4(),
-          content: (
-            <Card imagen="./assets/cricket.jpg" text={"Cricket"} onClick={buttonClick}/>
-          )
-        },
-        {
-          key: uuidv4(),
-          content: (
-            <Card imagen="./assets/football.jpg" text={"Football"} onClick={buttonClick}/>
-          )
-        },
-        {
-          key: uuidv4(),
-          content: (
-            <Card imagen="./assets/badminton.jpg" text={"Badminton"} onClick={buttonClick} />
-          )
-        },
-        {
-          key: uuidv4(),
-          content: (
-            <Card imagen="./assets/volleyball.jpeg" text={"Volleyball"} onClick={buttonClick}/>
-          )
-        },
-        {
-          key: uuidv4(),
-          content: (
-            <Card imagen="./assets/tabletennis.jpg" text={"Tabletennis"} onClick={buttonClick}/>
-          )
-        },
-        {
-          key: uuidv4(),
-          content: (
-            <Card imagen="./assets/tennis.webp" text={"Tennis"} onClick={buttonClick}/>
-          )
-        },
-        {
-          key: uuidv4(),
-          content: (
-            <Card imagen="./assets/chess.jpg" text={"Chess"} onClick={buttonClick}/>
-          )
-        },
-        {
-          key: uuidv4(),
-          content: (
-            <Card imagen="./assets/carrom.webp" text={"Carrom"} onClick={buttonClick}/>
-          )
-        },
-        {
-          key: uuidv4(),
-          content: (
-            <Card imagen="./assets/squash.webp" text={"Squash"} onClick={buttonClick}/>
-          )
-        },
-      ];
+      {
+        key: uuidv4(),
+        content: (
+          <Card imagen="./assets/basketball.jpg" text={"Basketball"} onClick={() => buttonClick("Basketball")} />
+        )
+      },
+      {
+        key: uuidv4(),
+        content: (
+          <Card imagen="./assets/cricket.jpg" text={"Cricket"} onClick={() => buttonClick("Cricket")} />
+        )
+      },
+      {
+        key: uuidv4(),
+        content: (
+          <Card imagen="./assets/football.jpg" text={"Football"} onClick={() => buttonClick("Football")} />
+        )
+      },
+      {
+        key: uuidv4(),
+        content: (
+          <Card imagen="./assets/badminton.jpg" text={"Badminton"} onClick={() => buttonClick("Badminton")} />
+        )
+      },
+      {
+        key: uuidv4(),
+        content: (
+          <Card imagen="./assets/volleyball.jpeg" text={"Volleyball"} onClick={() => buttonClick("Volleyball")} />
+        )
+      },
+      {
+        key: uuidv4(),
+        content: (
+          <Card imagen="./assets/tabletennis.jpg" text={"Tabletennis"} onClick={() => buttonClick("Tabletennis")} />
+        )
+      },
+      {
+        key: uuidv4(),
+        content: (
+          <Card imagen="./assets/tennis.webp" text={"Tennis"} onClick={() => buttonClick("Tennis")} />
+        )
+      },
+      {
+        key: uuidv4(),
+        content: (
+          <Card imagen="./assets/chess.jpg" text={"Chess"} onClick={() => buttonClick("Chess")} />
+        )
+      },
+      {
+        key: uuidv4(),
+        content: (
+          <Card imagen="./assets/carrom.webp" text={"Carrom"} onClick={() => buttonClick("Carrom")} />
+        )
+      },
+      {
+        key: uuidv4(),
+        content: (
+          <Card imagen="./assets/squash.webp" text={"Squash"} onClick={() => buttonClick("Squash")} />
+        )
+      },
+    ];
+    
+    
   return (
     <div className="home-container">
       <div id="navbar">
@@ -84,7 +89,7 @@ function Home() {
         {MenuItems.map((item)=>{
           return(
             <li className="left-panel-list" >
-              <Link className="left-panel-link" to={item.path} >{item.title}</Link>
+              <Link className="left-panel-link" to={{ pathname:`/Sports/${item.title}` , state: { title: item.title } }}>{item.title}</Link>
             </li>
           )
         })}
