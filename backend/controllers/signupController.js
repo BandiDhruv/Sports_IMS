@@ -2,8 +2,9 @@ import StudentInfo from "../models/StudentDetails.js";
 
 export const signupController = {
   signupUser: async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password,name } = req.body;
     const data = {
+      name:name,
       email: email,
       password: password,
     };

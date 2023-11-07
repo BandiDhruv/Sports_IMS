@@ -1,4 +1,5 @@
 import StudentInfo from "../models/StudentDetails.js";
+// import jwt from "jsonwebtoken";
 
 export const authController = {
   checkUserExist: async (req, res) => {
@@ -6,9 +7,11 @@ export const authController = {
     try {
       const check = await StudentInfo.findOne({ email: email });
       if (check) {
-        res.json("exist");
+        // const token =jwt.sign({email:check.email,},"secret123",)
+        // console.log(token);
+        return res.json("exist");
       } else {
-        res.json("notexist");
+        return res.json( "notexist")
       }
     } catch (e) {
       res.json("fail");

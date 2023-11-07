@@ -4,7 +4,7 @@ import SportsDetails from "./models/Sports.js";
 import SportsInfo from "./data/data.js";
 import mongoose from "mongoose";
 import router from "./Routes/routes.js";
-import request from "request";
+// import request from "request";
 
 const app = express();
 app.use(express.json());
