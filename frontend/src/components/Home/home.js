@@ -2,12 +2,29 @@ import { v4 as uuidv4 } from "uuid";
 import Card from "./Card";
 import Carousel from './slider';
 import "./home.css"
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import Navbar from "../Navbar/navbar"
 import { MenuItems } from "../Navbar/MenuItems";
+// import { useEffect } from "react";
+// import jwt from "jsonwebtoken"
 
 
 function Home() {
+  // const history=useNavigate();
+  // useEffect(() => {
+  //   const token=localStorage.getItem("token");
+  //   if(token){
+  //     const user =jwt.decode(token);
+  //     if(!user)
+  //     {
+  //       // localStorage.removeItem("token");
+  //       history('/');
+  //     }
+  //     else {
+  //       console.log("welcome to home page");
+  //     }
+  //   }
+  // })
   const navigate = useNavigate();
   const buttonClick = (text) => {
     console.log(text);
@@ -89,8 +106,8 @@ function Home() {
           <div className="left-panel-contents"  >
           {MenuItems.map((item)=>{
             return(
-              <li className="left-panel-list" >
-                <Link className="left-panel-link" to={item.path} >{item.title}</Link>
+              <li key={item.title}  className="left-panel-list" >
+                <Link className="left-panel-link" to={`/Sports/${item.title}`} >{item.title}</Link>
               </li>
             )
           })}
@@ -103,7 +120,6 @@ function Home() {
             width="75%"
             offset={2}
             showArrows={false}
-            // className="home-container"
             />
         </div>
       </div>

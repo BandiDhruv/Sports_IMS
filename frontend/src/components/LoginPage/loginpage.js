@@ -3,11 +3,13 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import "./loginpage.css";
 
-function Login() {
-  const history = useNavigate();
 
+function Login() {
+
+  const history = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
 
   async function submit(e) {
     e.preventDefault();
@@ -19,9 +21,9 @@ function Login() {
           password,
         })
         .then((res) => {
-          if (res.data == "exist") {
+          if (res.data== "exist") {
             history("/home", { state: { id: email } });
-          } else if (res.data == "notexist") {
+          } else if (res.data== "notexist") {
             alert("User have not sign up");
           }
         })
@@ -63,6 +65,7 @@ function Login() {
           <p className="login-hr"></p>
         </div>
         <form className="login-form" action="POST">
+         
           <input
             type="email"
             onChange={(e) => {

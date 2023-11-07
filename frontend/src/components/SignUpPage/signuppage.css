@@ -114,7 +114,8 @@
 
 .signup-form input[type="email"],
 .signup-form input[type="password"],
-.signup-form input[type="submit"] {
+.signup-form input[type="submit"],
+.signup-form input[type="text"]  {
     display: flex;
     justify-content: center;
     width: 80%;
@@ -126,7 +127,8 @@
 }
 
 .signup-form input[type="email"]::placeholder,
-.signup-form input[type="password"]::placeholder {
+.signup-form input[type="password"]::placeholder,
+.signup-form input[type="text"]::placeholder{
     color: white;
 }
 

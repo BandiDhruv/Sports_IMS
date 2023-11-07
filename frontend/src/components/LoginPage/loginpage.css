@@ -121,7 +121,8 @@
 
 .login-form input[type="email"],
 .login-form input[type="password"],
-.login-form input[type="submit"] {
+.login-form input[type="submit"]
+{
     display: flex;
     justify-content: center;
     width: 80%;
@@ -133,7 +134,9 @@
 }
 
 .login-form input[type="email"]::placeholder,
-.login-form input[type="password"]::placeholder {
+.login-form input[type="password"]::placeholder, 
+.login-form input[type="text"]::placeholder
+{
     color: white;
 }
 

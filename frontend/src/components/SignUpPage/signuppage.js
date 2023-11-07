@@ -9,6 +9,7 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [name,setName] = useState("");
 
   async function submit(e) {
     e.preventDefault();
@@ -21,6 +22,7 @@ function Signup() {
     try {
       await axios
         .post("http://localhost:8000/signup", {
+          name,
           email,
           password,
         })
@@ -28,7 +30,7 @@ function Signup() {
           if (res.data === "exist") {
             alert("User already exists");
           } else if (res.data === "notexist") {
-            history("/home", { state: { id: email } });
+            history("/", { state: { id: email } });
           }
         })
         .catch((e) => {
@@ -68,6 +70,13 @@ function Signup() {
         </div>
 
         <form className="signup-form" action="POST">
+        <input
+            type="text"
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+            placeholder="Name"
+            />
           <input
             type="email"
             onChange={(e) => {

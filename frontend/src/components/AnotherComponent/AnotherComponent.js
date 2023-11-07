@@ -11,6 +11,10 @@ const AnotherComponent = () => {
   const { title } = useParams();
   
   useEffect(() => {
+    // const token = Cookies.get('jwt_token'); 
+    // const headers = {
+    //   'authorization': `Bearer ${token}`, 
+    // };
     fetch("http://localhost:8000/InventoryDetails")
       .then(response => response.json())
       .then(data => {
@@ -30,25 +34,37 @@ const AnotherComponent = () => {
         <Navbar />
     </div>
     {filteredData.map((item) => (
-        <div className='cards-main'>
-        <h1 className='cards-heading' key={item._id}>{item.sportName}</h1>
+        <div className='cards-main' key={item._id}>
+        <h1 className='cards-heading'>{item.sportName}</h1>
         <div className='cards-container'>
         {item.Inventory.map((equipments) => (
-            <div className="cards">
+            <div className="cards" key={equipments._id}>
                 <div className="cards-image">
-                    {/* <img src={equipments.imageLink} alt="not available" crossOrigin="anonymous"/> */}
-                    <img src={`http://localhost:8000/proxy?imageUrl=${equipments.imageLink}`} alt="not available" crossOrigin="anonymous" />
-
+                    <img className="sportsCards-image"src={equipments.imageLink} alt="not available"/>
                 </div>
                 <div className="cards-name">
                     {equipments.nameOfSportsEquipment}
                 </div>
                 <div className="cards-quantity">
-                    {equipments.quantityOfSportsEquipment}
+                    Quantity : {equipments.quantityOfSportsEquipment}
                 </div>
-                <div className="cards-damaged">
+                {<div className="cards-damaged">
                     {equipments.isDamaged? <img className='damaged-img' src={red} alt="Red" /> : <img className='damaged-img' src={green} alt="Green" />}
-                </div>
+                </div> }
+                {/* <div className="cards-damaged">
+                  {equipments.isDamaged ? (
+                    <div className="additional-info">
+                      <img className='damaged-img' src={red} alt="Red" />
+                      Damaged
+                    </div>
+                  ) : (
+                    <div className="additional-info">
+                      <img className='damaged-img' src={green} alt="Green" />
+                      Not Damaged
+                    </div>
+                  )}
+                </div> */}
+
                 <div className="cards-available">
                     {equipments.quantityOfSportsEquipment !== 0 ? (<span className='available-text'>Available</span>) : (<span            className='available-text'>Not Available</span>)}
                 </div>   

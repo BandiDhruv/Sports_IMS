@@ -55,9 +55,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/home" element={<Home />} />
-          {/* <Route path="/Cricket" element={<Cricket />} /> */}
           <Route path="/Developers" element={<Developers />} />
-          {/* Updated route to accept parameters */}
           <Route path="/Sports/:title" element={<AnotherComponent />} />
         </Routes>
       </Router>

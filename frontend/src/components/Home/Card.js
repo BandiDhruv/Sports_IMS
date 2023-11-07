@@ -15,24 +15,17 @@ function Card({ imagen,text,onClick }) {
     });
   
 
-    return React.createElement(
-      "animated.div",
-      {
-        className: Styles.card,
-        style: props3,
-        onMouseEnter: () => setShown(true),
-        onMouseLeave: () => setShown(false),
-      },
-      React.createElement("img", { src: imagen, alt: "" }),
-      React.createElement("h2", null, text),
-      React.createElement(
-        "p",{ className: Styles.p },"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."),
-      React.createElement(
-        "div",
-        { className: Styles.btnn },
-        React.createElement(Button, { text: "See Inventory" ,onClick: () => onClick(text)}),
-      )
+    return (
+      <animated.div className={Styles.card} style={props3} onMouseEnter={() => setShown(true)} onMouseLeave={() => setShown(false)}>
+        <img src={imagen} alt="" />
+        <h2>{text}</h2>
+        <p className={Styles.p}>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+        <div className={Styles.btnn}>
+          <Button text="See Inventory" onClick={() => onClick(text)} />
+        </div>
+      </animated.div>
     );
+    
   }
   
   export default Card;
