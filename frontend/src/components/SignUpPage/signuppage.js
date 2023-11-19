@@ -27,9 +27,9 @@ function Signup() {
           password,
         })
         .then((res) => {
-          if (res.data === "exist") {
+          if (res.data.message === "exist") {
             alert("User already exists");
-          } else if (res.data === "notexist") {
+          } else if (res.data.message === "notexist") {
             history("/", { state: { id: email } });
           }
         })

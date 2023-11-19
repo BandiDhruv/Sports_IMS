@@ -1,31 +1,69 @@
+// import React, { useState, useEffect } from 'react';
+// import "./AnotherComponent.css";
+// import { useParams } from 'react-router-dom';
+// import Navbar from '../Navbar/navbar';
+// import green from '../../assetss/greencolor.jpg'
+// import red from '../../assetss/redcolor.png'
+
+
+// const AnotherComponent = () => {
+//   const [fetchData, setFetchData] = useState([]);
+//   const { title } = useParams();
+  
+//   useEffect(() => {
+//     // const token = Cookies.get('jwt_token'); 
+//     // const headers = {
+//     //   'authorization': `Bearer ${token}`, 
+//     // };
+//     fetch("http://localhost:8000/InventoryDetails")
+//       .then(response => response.json())
+//       .then(data => {
+//         setFetchData(data);
+//       })
+//       .catch(error => {
+//         console.error("Error fetching data:", error);
+//       });
+//   }, []); 
+
+//   const filteredData = fetchData.filter(item => item.sportName === title);
+//   console.log(filteredData);
 import React, { useState, useEffect } from 'react';
 import "./AnotherComponent.css";
 import { useParams } from 'react-router-dom';
 import Navbar from '../Navbar/navbar';
 import green from '../../assetss/greencolor.jpg'
 import red from '../../assetss/redcolor.png'
-
+import axios from 'axios';
 
 const AnotherComponent = () => {
   const [fetchData, setFetchData] = useState([]);
   const { title } = useParams();
-  
-  useEffect(() => {
-    // const token = Cookies.get('jwt_token'); 
-    // const headers = {
-    //   'authorization': `Bearer ${token}`, 
-    // };
-    fetch("http://localhost:8000/InventoryDetails")
-      .then(response => response.json())
-      .then(data => {
-        setFetchData(data);
-      })
-      .catch(error => {
-        console.error("Error fetching data:", error);
-      });
-  }, []); 
+  async function getDetails(){
+    await axios.get("http://localhost:8000/InventoryDetails",{withCredentials:true}).then((resp)=>{
+      console.log(resp.data)
+      setFetchData(resp.data)
+    }).catch(err=>{
+      console.error("error fetching data",err);
+    })
+    // .then(response => response.json())
+    // .then(data => {
+    //   // Check if 'data' is an array before setting the state
+    //   if (Array.isArray(data)) {
+    //     setFetchData(data);
+    //   } else {
+    //     console.error("API response is not an array:", data);
+    //   }
+    // })
+    // .catch(error => {
+    //   console.error("Error fetching data:", error);
+    // });
+  }
+  useEffect( () => {
+    getDetails();
+  }, []);
 
-  const filteredData = fetchData.filter(item => item.sportName === title);
+  // Check if fetchData is an array before using filter
+  const filteredData = Array.isArray(fetchData) ? fetchData.filter(item => item.sportName === title) : [];
   console.log(filteredData);
 
   return (
