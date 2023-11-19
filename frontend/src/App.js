@@ -156,6 +156,7 @@ import Developers from "./components/Developers/developers";
 import AnotherComponent from "./components/AnotherComponent/AnotherComponent";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Error from '../src/components/ErrorPage/Error'
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -187,6 +188,7 @@ function App() {
           {auth && <Route path="/Developers" element={<Developers />} />}
           {auth && <Route path="/Sports/:title" element={<AnotherComponent />} />}
           {/* Add more authenticated routes here */}
+          <Route path="/error" element={<Error />} />
         </Routes>
       </div>
     </Router>
