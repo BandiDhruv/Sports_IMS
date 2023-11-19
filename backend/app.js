@@ -5,12 +5,13 @@ import SportsInfo from "./data/data.js";
 import mongoose from "mongoose";
 import router from "./Routes/routes.js";
 // import request from "request";
+import cookieParser from "cookie-parser";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
-
+app.use(cors({credentials:true,origin:"http://localhost:3000"}));
+app.use(cookieParser()); 
 
 const databaseName = "logindetails"; 
 mongoose.connect(`mongodb+srv://dhruvbandi:dhruvbandi@cluster0.vfq2isd.mongodb.net/${databaseName}`, {
