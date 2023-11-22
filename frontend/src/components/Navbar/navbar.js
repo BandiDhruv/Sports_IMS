@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "./navbar.css";
-import { Link } from 'react-router-dom';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faTimes, faBars, faCaretDown } from '@fortawesome/free-solid-svg-icons';
-// import { useNavigate } from 'react-router-dom';
+import { Link ,useNavigate} from 'react-router-dom';
 import Button from './button';
+import axios from 'axios';
 
 const Navbar = () => {
-    // const navigate = useNavigate();
-    const [click, setClick] = useState(false);
+    const navigate = useNavigate();
 
+    const handleLogout = async () => {
+        try {
+          const response = await axios.get('http://localhost:8000/logout', { withCredentials: true });
+          if (response.status === 200) {
+            navigate('/');
+          } else {
+            console.error('Logout failed with status:', response.status);
+          }
+        } catch (error) {
+          console.error('Error logging out:', error);
+        }
+      };
     return (
         <div className='navbar'>
             <div className="nav1">
@@ -23,6 +32,9 @@ const Navbar = () => {
                 <Link to="/Developers" className="one" >
                     <Button text="Meet the Developers"/>
                 </Link>
+                <div onClick={handleLogout}>
+                    <Button text="logout" />
+                </div>
             </div>
             <div className="nav3">
               <img className="lnmiit-image" src={process.env.PUBLIC_URL + "/assets/LNMIIT-LOGO.png"} />

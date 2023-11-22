@@ -1,10 +1,11 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import "./developers.css"
 import img from "./free-images.avif"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import Navbar from "../Navbar/navbar"
-const developers = () => {
+import { useNavigate } from 'react-router-dom';
+const Developers = () => {
   return (
       <div className='developer-main'>
 
@@ -57,4 +58,4 @@ const developers = () => {
       </div>
   )
   }
-export default developers;
+export default Developers;

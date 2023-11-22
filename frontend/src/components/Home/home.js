@@ -5,26 +5,9 @@ import "./home.css"
 import { Link, useNavigate} from "react-router-dom";
 import Navbar from "../Navbar/navbar"
 import { MenuItems } from "../Navbar/MenuItems";
-// import { useEffect } from "react";
-// import jwt from "jsonwebtoken"
-
 
 function Home() {
-  // const history=useNavigate();
-  // useEffect(() => {
-  //   const token=localStorage.getItem("token");
-  //   if(token){
-  //     const user =jwt.decode(token);
-  //     if(!user)
-  //     {
-  //       // localStorage.removeItem("token");
-  //       history('/');
-  //     }
-  //     else {
-  //       console.log("welcome to home page");
-  //     }
-  //   }
-  // })
+
   const navigate = useNavigate();
   const buttonClick = (text) => {
     console.log(text);

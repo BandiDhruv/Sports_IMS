@@ -25,7 +25,7 @@ function Signup() {
           name,
           email,
           password,
-        })
+        },{withCredentials:true})
         .then((res) => {
           if (res.data.message === "exist") {
             alert("User already exists");
@@ -47,9 +47,6 @@ function Signup() {
       <div className="box">
 
       <div className="box1">
-            {/* <div className="logo">
-              <img className="login-img"src={process.env.PUBLIC_URL + "/assets/logo1.png"}/>
-            </div> */}
             <div className="lnmiit-logo">
               <img className="lnmiit-img" src={process.env.PUBLIC_URL + "/assets/LNMIIT-LOGO.png"} />
             </div>

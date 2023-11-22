@@ -11,7 +11,6 @@ export default function Caroussel(props) {
   const [showArrows, setShowArrows] = useState(false);
   const [goToSlide, setGoToSlide] = useState(null);
   const [cards] = useState(table);
-  // const[height,setHeight]=useState("");
 
   useEffect(() => {
     setOffsetRadius(props.offset);
