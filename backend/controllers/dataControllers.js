@@ -10,4 +10,4 @@ const getSportsData = async (req, res) => {
   }
 };
 
-export { getSportsData }; // Modified export
+export { getSportsData }; 

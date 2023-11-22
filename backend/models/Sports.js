@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 const Sports = new mongoose.Schema({
   sportName: {
     type: String,
-    // required: true,
   },
   Inventory: [{
     nameOfSportsEquipment: { type: String },

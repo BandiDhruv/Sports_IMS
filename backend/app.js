@@ -4,7 +4,6 @@ import SportsDetails from "./models/Sports.js";
 import SportsInfo from "./data/data.js";
 import mongoose from "mongoose";
 import router from "./Routes/routes.js";
-// import request from "request";
 import cookieParser from "cookie-parser";
 
 const app = express();
