@@ -79,26 +79,21 @@ router.get("/request-details",async(req,res)=>{
     res.status(500).json({error:"Failed to fetch request details"});
   }
 })
-// Define route to get status based on userEmail and itemID
-// router.get("/request-status/:userEmail/:itemID", async (req, res) => {
-//   const { userEmail, itemID } = req.params;
-
-//   try {
-//     // Use userEmail and itemID to find status
-//     const statusData = await RequestInfo.findOne({ userEmail, itemID }, { status: 1 });
-
-//     if (!statusData) {
-//       return res.status(404).json({ message: 'Status data not found' });
-//     }
-
-//     res.status(200).json({ message: 'Status data retrieved successfully', statusData });
-//   } catch (error) {
-//     console.error('Error fetching status:', error);
-//     res.status(500).json({ error: 'Internal server error' });
-//   }
-// });
-
-
+router.get("/get-status/:userEmail",async(req,res)=>{
+  try{
+    const email=req.params.userEmail;
+  
+    const allDetails=await RequestInfo.find({userEmail:email});
+    if(!allDetails)
+      res.status(100).json("NO data ");
+    res.status(200).json({message:"success",details:allDetails});
+  }
+  catch(err)
+  {
+    console.error("error getting status from database",err);
+    res.status(500).json({error:"Failed to get status details"});
+  }
+})
 
 
 router.patch("/update-status/:id", async (req, res) => {
