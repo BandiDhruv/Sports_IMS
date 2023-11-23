@@ -91,6 +91,15 @@
     cursor: pointer;
     height: 2.5rem;
 }
+.pending-btn{
+    background-color: #a3a3a3;
+}
+.accepted-btn{
+    background-color: yellow;
+}
+.rejected-btn{
+    background-color: red;
+}
 /* .cards-image
 {
     height: 40%;
