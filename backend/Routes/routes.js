@@ -6,6 +6,7 @@ import jwt  from "jsonwebtoken";
 import StudentInfo from "../models/StudentDetails.js";
 const router = express.Router();
 import RequestInfo from "../models/Requests.js";
+import SportsDetails from "../models/Sports.js";
 
 router.get("/InventoryDetails", authenticateToken, async (req, res) => {
   try {
@@ -50,10 +51,11 @@ router.get("/role",(req,res)=>{
   res.json(roles.role);
 })
 router.post("/reserve", async (req, res) => {
-  const { itemID, userEmail, time,imageLink } = req.body; 
+  const { itemID, userEmail, time,imageLink,sportName } = req.body; 
 
   try {
     const newRequest = {
+      sportName:sportName,
       itemID: itemID,
       userEmail: userEmail,
       time: time,
@@ -94,6 +96,66 @@ router.get("/get-status/:userEmail",async(req,res)=>{
     res.status(500).json({error:"Failed to get status details"});
   }
 })
+router.patch("/increment-quantity/:sportName/:itemId", async (req, res) => {
+  const { sportName, itemId } = req.params;
+
+  try {
+    // Find the sport by its name
+    const sport = await SportsDetails.findOne({ sportName });
+
+    if (!sport) {
+      return res.status(404).json({ message: 'Sport not found' });
+    }
+
+    // Find the inventory item within the sport by its ID
+    const inventoryItem = sport.Inventory.id(itemId);
+
+    if (!inventoryItem) {
+      return res.status(404).json({ message: 'Item not found in the inventory' });
+    }
+
+    // Increment the quantity for the found inventory item
+    inventoryItem.quantityOfSportsEquipment += 1;
+
+    // Save the changes to the sport document
+    await sport.save();
+
+    res.status(200).json({ message: 'Quantity updated successfully', sport });
+  } catch (err) {
+    console.error('Error updating quantity:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+router.patch("/decrement-quantity/:sportName/:itemId", async (req, res) => {
+  const { sportName, itemId } = req.params;
+
+  try {
+    // Find the sport by its name
+    const sport = await SportsDetails.findOne({ sportName });
+
+    if (!sport) {
+      return res.status(404).json({ message: 'Sport not found' });
+    }
+
+    // Find the inventory item within the sport by its ID
+    const inventoryItem = sport.Inventory.id(itemId);
+
+    if (!inventoryItem) {
+      return res.status(404).json({ message: 'Item not found in the inventory' });
+    }
+
+    // Increment the quantity for the found inventory item
+    inventoryItem.quantityOfSportsEquipment -= 1;
+
+    // Save the changes to the sport document
+    await sport.save();
+
+    res.status(200).json({ message: 'Quantity updated successfully', sport });
+  } catch (err) {
+    console.error('Error updating quantity:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 
 router.patch("/update-status/:id", async (req, res) => {
@@ -107,12 +169,32 @@ router.patch("/update-status/:id", async (req, res) => {
       return res.status(404).json({ message: 'Request not found' });
     }
 
-    res.status(200).json({ message: 'Status updated successfully', updatedRequest });
+    if (status === "accepted") {
+      const sname = updatedRequest.sportName;
+      const itemId = updatedRequest.itemID;
+
+      const sport = await SportsDetails.findOneAndUpdate(
+        { sportName: sname, 'Inventory._id': itemId },
+        { $inc: { 'Inventory.$.quantityOfSportsEquipment': -1 } }, // Decrement the quantity by 1
+        { new: true }
+      );
+
+      if (!sport) {
+        return res.status(404).json({ message: 'Sport or inventory item not found' });
+      }
+    }
+
+    // Respond with success message and data
+    res.status(200).json({ message: 'Status and quantity updated successfully', updatedRequest});
+    
+    // Attempt deletion
+    await RequestInfo.deleteOne({ _id: requestId });
   } catch (error) {
-    console.error('Error updating status:', error);
+    console.error('Error updating status and quantity:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 
 
 

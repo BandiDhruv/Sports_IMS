@@ -22,6 +22,10 @@ const RequestDetails = new mongoose.Schema({
   imageLink:{
     type:String,
     required:true,
+  },
+  sportName:{
+    type:String,
+    required:true,
   }
 });
 
