@@ -30,6 +30,7 @@ const AdminPage = () => {
 
       if (response.status === 200) {
         // Fetch updated data after status change
+        console.log(response.data);
         fetchData();
       } else {
         console.error('Failed to update status:', response.statusText);
@@ -41,6 +42,11 @@ const AdminPage = () => {
 
   return (
     <div className='admin-container'>
+      <div className="admin-navbar">
+        <a href="/manage-items">
+          <button className='admin-button'>Manage Items</button>
+        </a>
+      </div>
       <div className='admin-items'>
         {requestData.map((item) => (
           <div key={item._id}>

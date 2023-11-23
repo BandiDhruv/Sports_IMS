@@ -1,0 +1,54 @@
+.manage-container{
+    height: auto;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 3rem;
+}
+.manage-navbar{
+    display: flex;
+    flex-direction: row;    
+    width: 100vw;
+    height: 10%;
+    background-color: blue;
+    align-items: center;
+    justify-content: center;
+}
+.sport-details{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    width: 100%;
+    /* background-color: red; */
+}
+.sport-inner{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    column-gap: 10rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.r3{
+    display: flex;
+    height: 100px;
+    width: 100px;
+    /* background-color: blue; */
+}
+.manage-sport-image{
+    height: 100%;
+    width: 100%;
+}
+.ruler{
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+}
+.chng-btn{
+    width: 20px;
+    height:20px;
+}

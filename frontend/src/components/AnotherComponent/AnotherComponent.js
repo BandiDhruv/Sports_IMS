@@ -34,7 +34,7 @@ const AnotherComponent = () => {
       });
   }
   // console.log(statusData);
-  async function handleReserve(equipment) {
+  async function handleReserve(equipment,sport) {
     try {
       const userEmail = localStorage.getItem("userEmail");
       const currentTime = new Date();
@@ -47,6 +47,7 @@ const AnotherComponent = () => {
         .post(
           "http://localhost:8000/reserve",
           {
+            sportName:sport,
             userEmail: userEmail,
             itemID: equipment._id,
             time: currentTime,
@@ -117,7 +118,7 @@ const AnotherComponent = () => {
                 <div>
   {equipments.quantityOfSportsEquipment !== 0 &&
     (!statusData.some(item => item.itemID === equipments._id)) && (
-      <button className="cards-btn" onClick={() => handleReserve(equipments)}>RESERVE</button>
+      <button className="cards-btn" onClick={() => handleReserve(equipments,item.sportName)}>RESERVE</button>
     )
   }
   {

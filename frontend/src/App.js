@@ -10,6 +10,7 @@ import axios from 'axios';
 import Error from '../src/components/ErrorPage/Error'
 // import { faTruckField } from '@fortawesome/free-solid-svg-icons';
 import AdminPage from './components/AdminPage/AdminPage';
+import ManageItems from './components/AdminPage/ManageItems';
 
 function App() {
   const [auth, setAuth] = useState(localStorage.getItem("auth")?true:false);
@@ -36,7 +37,7 @@ function App() {
     authF();
     
   },[]);
-
+const role=localStorage.getItem("userRole");
   return (
     <Router>
       <div className="App">
@@ -47,7 +48,8 @@ function App() {
           {auth && <Route path="/Developers" element={<Developers />} />}
           {auth && <Route path="/Sports/:title" element={<AnotherComponent />} />}
           <Route path="*" element={<Error />} />
-          <Route path="/admin" element={<AdminPage/>} />
+          {role==="admin" && <Route path="/admin" element={<AdminPage/>} />}
+          {role==="admin" && <Route path="/manage-items" element={<ManageItems/>} />}
         </Routes>
       </div>
     </Router>

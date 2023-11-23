@@ -10,6 +10,7 @@ const Navbar = () => {
     const handleLogout = async () => {
         try {
           const response = await axios.get('http://localhost:8000/logout', { withCredentials: true });
+          localStorage.clear();
           if (response.status === 200) {
             navigate('/');
           } else {
