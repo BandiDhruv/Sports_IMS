@@ -17,6 +17,49 @@ router.get("/InventoryDetails", authenticateToken, async (req, res) => {
   }
 });
 
+// ****form for adding a sport item****
+
+router.post("/add-item/:sportName", async (req, res) => {
+  const sportName = req.params.sportName;
+  const { nameOfSportsEquipment, quantityOfSportsEquipment, isDamaged, imageLink } = req.body;
+
+  try {
+    const sport = await SportsDetails.findOne({ sportName });
+
+    if (!sport) {
+      return res.status(404).json({ message: 'Sport not found' });
+    }
+    const newItem = {
+      nameOfSportsEquipment,
+      quantityOfSportsEquipment,
+      isDamaged:false,
+      imageLink,
+    };
+    sport.Inventory.push(newItem);
+    await sport.save();
+
+    res.status(201).json({ message: 'New item added to the inventory', sport });
+  } catch (error) {
+    console.error('Error adding new item:', error);
+    res.status(500).json({ error: 'Failed to add new item' });
+  }
+});
+
+
+
+router.get("/InventoryData",async(req,res)=>{
+  try{
+      const dataa=await SportsDetails.find({});
+      if(!dataa)
+        res.json("no data in the inventory");
+      res.status(200).json(dataa);
+  }
+  catch(err){
+    console.error(err);
+    res.status(500).json({error:"INTERNAL SERVER ERROR"});
+  }
+})
+
 router.get("/home", authenticateToken);
 router.get("/api", async (req, res) => {
   const token = req.cookies.token;

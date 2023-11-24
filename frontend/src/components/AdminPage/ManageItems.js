@@ -7,7 +7,7 @@ const ManageItems = () => {
 
   async function getDetails() {
     try {
-      const response = await axios.get("http://localhost:8000/InventoryDetails", { withCredentials: true });
+      const response = await axios.get("http://localhost:8000/InventoryData", { withCredentials: true });
       setData(response.data);
     } catch (err) {
       console.error("Error fetching data", err);
