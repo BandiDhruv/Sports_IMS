@@ -1,10 +1,9 @@
 import StudentInfo from "../models/StudentDetails.js";
 import jwt from "jsonwebtoken"
 
-
 const secret= "dhruv123"
 export const authController = {
-  checkUserExist: async (req, res) => {
+  loginUser: async (req, res) => {
     const { email, password } = req.body;
     try {
       const check = await StudentInfo.findOne({ email });
@@ -13,7 +12,7 @@ export const authController = {
         const token = generateToken({
           id: check._id,
           email: check.email,
-          role: check.role // Assuming you have a role field in your database
+          role: check.role 
         });
         console.log(token);
         if (password !== check.password) {
@@ -58,6 +57,18 @@ export const authController = {
       res.json("fail");
     }
   },
+  logoutUser: async (req, res) => { 
+    res.clearCookie("token");
+    res.status(200).json({ message: 'Logged out successfully' });
+  },
+  getRole: async (req,res)=>{
+    const roles=authController.fetchUserData;
+    if(!roles)
+    {
+      res.json("No role found");
+    }
+    res.json(roles.role);
+  }
 };
 const generateToken = (user) => {
   return jwt.sign(user, secret, {
