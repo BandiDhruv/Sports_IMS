@@ -1,7 +1,7 @@
 .admin-container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 100vh;
     width: auto;
@@ -11,7 +11,7 @@
     flex-direction: row;    
     width: 100vw;
     height: 10%;
-    background-color: blue;
+    background-color: rgb(22, 40, 80);
     align-items: center;
     justify-content: space-around;
 }
@@ -21,6 +21,14 @@
     border-radius: 10px;
     cursor: pointer;
 }
+.form-div-admin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 90%;
+    width: 100%;
+}
 .admin-items{
     height: 90%;
     width: 100vw;
@@ -28,36 +36,70 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: red;
+    /* background-color: red; */
     gap: 1rem;
 }
 .admin-item-image{
     height: 8rem;
     width: 8rem;
 }
-.add-sport-form{
+.add-sport-form {
     position: absolute;
-    top: 35%;
-    left: 35%;
-    height: 25rem;
-    width: 25rem;
-    background-color: beige;
+    height: auto;
+    width: 28rem;
+    background-color: rgb(250, 250, 250);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2rem;
-}
-.close-btn{
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .close-btn {
     position: absolute;
-    top: 1%;
+    top: 5px;
+    right: 5px;
     cursor: pointer;
-    /* border-radius: 1rem; */
+    background-color: beige;
+    color: black;
     border: none;
-    /* outline: none; */
-    background-color: black;
-    color: white;
-    right: 3%;
+    border-radius: 50%;
     height: 25px;
     width: 25px;
+    font-weight: bold;
+  }
+  .close-btn:hover{
+    background-color: #c4c4c4;
+  }
+  
+  .dropdown {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+  option{
+    overflow-y: scroll;
+  }
+
+.add-sport-form input[type="text"],input[type="number"]{
+    width: 90%;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+.add-sport-form .admin-button{
+    font-size: 1rem;
+    width: 7rem;
+    height: 2.5rem;
+}
+@media screen and (max-width:900px) {
+    .add-sport-form{
+        width: 50%;
+    }
 }

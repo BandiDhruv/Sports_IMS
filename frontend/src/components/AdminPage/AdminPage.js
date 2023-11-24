@@ -98,21 +98,27 @@ const AdminPage = () => {
         </a>
         <button className='admin-button' onClick={toggleShowForm}>Add New Item</button>
       </div>
+      
       {showForm && 
+      <div className="form-div-admin">
+
         <form className='add-sport-form' onSubmit={handleSubmit}>
           <button className='close-btn' onClick={toggleShowForm}>X</button>
-          <select name="sportName" value={newSport.sportName} onChange={handleInputChange} required>
-            <option value="">Select a sport</option>
+          <select className='dropdown' name="sportName" value={newSport.sportName} onChange={handleInputChange} required>
+            <option  value="">Select a sport <div className="asteric">*</div></option>
             {uniqueSports.map((sport, index) => (
               <option key={index} value={sport}>{sport}</option>
-            ))}
+              ))}
           </select>
-          <input type="text" name="nameOfSportsEquipment" placeholder='Equipment Name' value={newSport.inventory.nameOfSportsEquipment} onChange={handleInputChange} required />
-          <input type="number" name="quantityOfSportsEquipment" placeholder='Quantity' value={newSport.inventory.quantityOfSportsEquipment} onChange={handleInputChange} required />
-          <input type='text'  name='imageLink' placeholder='Image Link' value={newSport.inventory.imageLink} onChange={handleInputChange} />
-          <button type="submit">Add Equipment</button>
+          <input type="text" name="nameOfSportsEquipment" placeholder='Equipment Name*' value={newSport.inventory.nameOfSportsEquipment} onChange={handleInputChange} required />
+          <input type="number" name="quantityOfSportsEquipment" placeholder='Quantity*' value={newSport.inventory.quantityOfSportsEquipment} onChange={handleInputChange} required />
+          <input type='text'  name='imageLink' placeholder='Image Link*' value={newSport.inventory.imageLink} onChange={handleInputChange} />
+          <button className="admin-button" type="submit">Confirm</button>
         </form>
+      </div>
       }
+
+      {!showForm && 
       <div className='admin-items'>
         {requestData.map((item) => (
           <div key={item._id}>
@@ -124,6 +130,7 @@ const AdminPage = () => {
           </div>
         ))}
       </div>
+      }
     </div>
   );
 };
