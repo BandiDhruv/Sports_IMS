@@ -5,9 +5,15 @@ import './AdminPage.css';
 
 const AdminPage = () => {
   const [requestData, setRequestData] = useState([]);
-
+  const [showForm,setShowForm]=useState(false);
+  const [newSport, setNewSport] = useState({
+    sportName: '',
+    inventory: [],
+  });
+  const [data,setData]=useState({});
   useEffect(() => {
     fetchData();
+    getDetails();
   }, []); // Empty dependency array ensures this effect runs only once
 
   const fetchData = async () => {
@@ -40,13 +46,73 @@ const AdminPage = () => {
     }
   };
 
+  async function toggleShowForm(){
+    setShowForm(!showForm)
+  }
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewSport({
+      ...newSport,
+      [name]: value,
+    });
+  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { sportName, ...itemDetails } = newSport; // Extract sportName from newSport object
+      const response = await axios.post(`http://localhost:8000/add-item/${sportName}`, itemDetails, { withCredentials: true });
+  
+      if (response.status === 201) {
+        console.log('New item added successfully!');
+        setNewSport({
+          sportName: '',
+          inventory: [],
+        });
+        setShowForm(false);
+        fetchData();
+      } else {
+        console.error('Failed to add new item:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error adding new item:', error);
+    }
+  };
+  
+
+  async function getDetails() {
+    try {
+      const response = await axios.get("http://localhost:8000/InventoryData", { withCredentials: true });
+      setData(response.data);
+    } catch (err) {
+      console.error("Error fetching data", err);
+    }
+  }
+  const uniqueSports = Array.isArray(data) ? Array.from(new Set(data.map(item => item.sportName))) : [];
+
+  console.log(data);
   return (
     <div className='admin-container'>
       <div className="admin-navbar">
         <a href="/manage-items">
           <button className='admin-button'>Manage Items</button>
         </a>
+        <button className='admin-button' onClick={toggleShowForm}>Add New Item</button>
       </div>
+      {showForm && 
+        <form className='add-sport-form' onSubmit={handleSubmit}>
+          <button className='close-btn' onClick={toggleShowForm}>X</button>
+          <select name="sportName" value={newSport.sportName} onChange={handleInputChange} required>
+            <option value="">Select a sport</option>
+            {uniqueSports.map((sport, index) => (
+              <option key={index} value={sport}>{sport}</option>
+            ))}
+          </select>
+          <input type="text" name="nameOfSportsEquipment" placeholder='Equipment Name' value={newSport.inventory.nameOfSportsEquipment} onChange={handleInputChange} required />
+          <input type="number" name="quantityOfSportsEquipment" placeholder='Quantity' value={newSport.inventory.quantityOfSportsEquipment} onChange={handleInputChange} required />
+          <input type='text'  name='imageLink' placeholder='Image Link' value={newSport.inventory.imageLink} onChange={handleInputChange} />
+          <button type="submit">Add Equipment</button>
+        </form>
+      }
       <div className='admin-items'>
         {requestData.map((item) => (
           <div key={item._id}>
