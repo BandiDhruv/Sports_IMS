@@ -1,36 +1,57 @@
 .manage-container{
-    height: auto;
-    width: 100vw;
+    height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: center;
     justify-content: center;
-    gap: 3rem;
+    /* gap: 3rem; */
+}
+.admin-button{
+    background-color: #1888ff;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 8rem;
+    height: 3rem;
+    padding: .5rem 1.25rem;
 }
 .manage-navbar{
     display: flex;
     flex-direction: row;    
-    width: 100vw;
-    height: 10%;
-    background-color: blue;
+    width: 100%;
+    height: 10vh;
+    background-color: rgb(22, 40, 80);
     align-items: center;
     justify-content: center;
+}
+.manage-sport{
+    height:90vh;
+    width: 100%;
+    /* background-color: red; */
 }
 .sport-details{
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: center;
     justify-content: center;
     width: 100%;
-    /* background-color: red; */
+    /* background-color: rgb(238, 238, 238);  */
+    
 }
+
 .sport-inner{
     display: flex;
     flex-direction: row;
     margin-bottom: 1rem;
-    column-gap: 10rem;
+    gap: 1rem;
+    width: 100vw;
+    column-gap: 11rem;
     justify-content: center;
     align-items: center;
+    
 }
 
 .r3{
@@ -38,17 +59,59 @@
     height: 100px;
     width: 100px;
     /* background-color: blue; */
+    
 }
 .manage-sport-image{
     height: 100%;
     width: 100%;
+
 }
 .ruler{
-    width: 100%;
-    height: 1px;
-    background-color: #000;
+    width: 99%;
+    height: 2px;
+    background-color: #1c4a7c;
 }
 .chng-btn{
-    width: 20px;
-    height:20px;
+    width: 30px;
+    font-weight: bold;
+    height:30px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #1888ff;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+}
+.sport-quant{
+    font-weight: bold;
+    padding: 0.5rem;
+}
+.sport-equipment{
+    font-weight: bold;
+    font-size: 1.2rem;
+   
+}
+.r1{
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.sport-name{
+    cursor: pointer;
+    margin-top: 0.5rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sport-inner:hover{
+    background-color: rgb(238, 238, 238); ;
+}
+.toggle-icon{
+    cursor: pointer;
+padding: 1rem;
 }

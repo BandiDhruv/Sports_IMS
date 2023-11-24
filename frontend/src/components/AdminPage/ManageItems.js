@@ -53,21 +53,25 @@ const ManageItems = () => {
           <button className='admin-button'>See Requests</button>
         </a>
       </div>
+      <div className='manage-sport'>
       {data.map((sport, index) => (
         <div key={sport._id} className="sport-details">
           <div className="sport-name" onClick={() => toggleDetails(index)}>
-            {sport.sportName} <span>{sport.showDetails ? '▲' : '▼'}</span>
+            {sport.sportName} <span className='toggle-icon'>{sport.showDetails ? '▲' : '▼'}</span>
           </div>
           {sport.showDetails && (
             <div className="sport-inventory">
               {sport.Inventory.map((item, i) => (
                 <div className="sport-inner" key={item._id}>
                   <div className="r1">
-                    Equipment:- {item.nameOfSportsEquipment}
+                   <span className='sport-equipment'> Equipment :- </span> {item.nameOfSportsEquipment}
                   </div>
                   <div className="r2">
-                    Quantity:- <button className='chng-btn' onClick={() => increment(sport.sportName,item._id)}>+</button>
-{item.quantityOfSportsEquipment} <button className='chng-btn' onClick={() => decrement(sport.sportName,item._id)}>-</button>
+                   <span className='sport-equipment'>
+                   Quantity :- </span>  <button className='chng-btn' onClick={() => increment(sport.sportName,item._id)}>+</button><span className='sport-quant'>
+                   {item.quantityOfSportsEquipment} 
+                   </span>
+<button className='chng-btn' onClick={() => decrement(sport.sportName,item._id)}>-</button>
                   </div>
                   <div className="r3">
                     <img className="manage-sport-image" src={item.imageLink} alt="na" />
@@ -79,6 +83,7 @@ const ManageItems = () => {
           <hr className='ruler' />
         </div>
       ))}
+      </div>
     </div>
   );
 };
