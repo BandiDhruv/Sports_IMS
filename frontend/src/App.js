@@ -49,7 +49,7 @@ const role=localStorage.getItem("userRole");
           {auth && <Route path="/Sports/:title" element={<AnotherComponent />} />}
           <Route path="*" element={<Error />} />
           {role==="admin" && <Route path="/admin" element={<AdminPage/>} />}
-          {role==="admin" && <Route path="/manage-items" element={<ManageItems/>} />}
+          {role==="admin" &&  <Route path="/manage-items" element={<ManageItems/>} />}
         </Routes>
       </div>
     </Router>
