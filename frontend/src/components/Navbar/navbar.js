@@ -24,7 +24,6 @@ const Navbar = () => {
     return (
         <div className='navbar'>
             <div className="nav1">
-
             <Link to="/home" ><img className='navbar-logo' src={process.env.PUBLIC_URL + "/assets/main-logo.png"}/></Link>
             </div>
             <div className="nav2">
@@ -38,9 +37,7 @@ const Navbar = () => {
                     <Button text="logout" />
                 </div>
             </div>
-            <div className="nav3">
-              <img className="lnmiit-image" src={process.env.PUBLIC_URL + "/assets/LNMIIT-LOGO.png"} />
-            </div>
+
             <ToastContainer />
         </div>
     );
