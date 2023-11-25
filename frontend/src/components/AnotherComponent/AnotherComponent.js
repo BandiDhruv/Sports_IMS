@@ -5,6 +5,8 @@ import Navbar from "../Navbar/navbar";
 import green from "../../assetss/greencolor.jpg";
 import red from "../../assetss/redcolor.png";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AnotherComponent = () => {
   const [fetchData, setFetchData] = useState([]);
@@ -34,7 +36,7 @@ const AnotherComponent = () => {
       });
   }
   // console.log(statusData);
-  async function handleReserve(equipment,sport) {
+  async function handleReserve(equipment, sport) {
     try {
       const userEmail = localStorage.getItem("userEmail");
       const currentTime = new Date();
@@ -47,7 +49,7 @@ const AnotherComponent = () => {
         .post(
           "http://localhost:8000/reserve",
           {
-            sportName:sport,
+            sportName: sport,
             userEmail: userEmail,
             itemID: equipment._id,
             time: currentTime,
@@ -57,11 +59,12 @@ const AnotherComponent = () => {
         )
         .then((res) => {
           if (res.data.message === "success") {
-            alert("requested");
+            toast.success("Requested successfully");
           }
         });
     } catch (error) {
       console.error("Error during reservation:", error);
+      toast.error("Error during reservation");
     }
   }
 
@@ -116,38 +119,61 @@ const AnotherComponent = () => {
                   )}
                 </div>
                 <div>
-  {equipments.quantityOfSportsEquipment !== 0 &&
-    (!statusData.some(item => item.itemID === equipments._id)) && (
-      <button className="cards-btn" onClick={() => handleReserve(equipments,item.sportName)}>RESERVE</button>
-    )
-  }
-  {
-    statusData.map(item => {
-      if (item.itemID === equipments._id) {
-        if (item.status === 'pending') {
-          return (
-            <button key={`pending-${item.itemID}`} className="cards-btn pending-btn">Pending</button>
-          );
-        } else if (item.status === 'accepted') {
-          return (
-            <button key={`accepted-${item.itemID}`} className="cards-btn accepted-btn">Accepted</button>
-          );
-        } else if (item.status === 'rejected') {
-          return (
-            <button key={`rejected-${item.itemID}`} className="cards-btn rejected-btn">Rejected</button>
-          );
-        }
-      }
-      return null;
-    })
-  }
-</div>
-
+                  {equipments.quantityOfSportsEquipment !== 0 &&
+                    !statusData.some(
+                      (item) => item.itemID === equipments._id
+                    ) && (
+                      <button
+                        className="cards-btn"
+                        onClick={() =>
+                          handleReserve(equipments, item.sportName)
+                        }
+                      >
+                        RESERVE
+                      </button>
+                    )}
+                  {statusData.map((item) => {
+                    if (item.itemID === equipments._id) {
+                      if (item.status === "pending") {
+                        return (
+                          <button
+                            key={`pending-${item.itemID}`}
+                            className="cards-btn pending-btn"
+                          >
+                            Pending
+                          </button>
+                        );
+                      } else if (item.status === "accepted") {
+                        toast.success("Reservation accepted");
+                        return (
+                          <button
+                            key={`accepted-${item.itemID}`}
+                            className="cards-btn accepted-btn"
+                          >
+                            Accepted
+                          </button>
+                        );
+                      } else if (item.status === "rejected") {
+                        toast.error("Reservation rejected");
+                        return (
+                          <button
+                            key={`rejected-${item.itemID}`}
+                            className="cards-btn rejected-btn"
+                          >
+                            Rejected
+                          </button>
+                        );
+                      }
+                    }
+                    return null;
+                  })}
+                </div>
               </div>
             ))}
           </div>
         </div>
       ))}
+      <ToastContainer />
     </div>
   );
 };

@@ -11,6 +11,8 @@ import Error from '../src/components/ErrorPage/Error'
 // import { faTruckField } from '@fortawesome/free-solid-svg-icons';
 import AdminPage from './components/AdminPage/AdminPage';
 import ManageItems from './components/AdminPage/ManageItems';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const [auth, setAuth] = useState(localStorage.getItem("auth")?true:false);
@@ -51,6 +53,7 @@ const role=localStorage.getItem("userRole");
           {role==="admin" && <Route path="/admin" element={<AdminPage/>} />}
           {role==="admin" && <Route path="/manage-items" element={<ManageItems/>} />}
         </Routes>
+        <ToastContainer />
       </div>
     </Router>
   );

@@ -1,45 +1,38 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./loginpage.css";
 
-
-function Login({setAuth}) {
-
+function Login({ setAuth }) {
   const history = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-
   async function submit(e) {
     e.preventDefault();
-    console.log({email,password});
+
     try {
-      await axios
-        .post("http://localhost:8000/", {
-          email,
-          password,
-        },{withCredentials:true})
-        .then((res) => {
-          if (res.data.message=== "exist") {
-            setAuth(true);
-            history("/home", { state: { id: email } });
-          } else if (res.data.message=== "notexist") {
-            alert("User have not sign up");
-          }
-          else if(res.data.error==="Invalid email"){
-            alert("Please sign in through registered lnmiit email only");
-          }
-          else if(res.data.error==="Invalid password"){
-            alert("incorrect password");
-          }
-        })
-        .catch((e) => {
-          alert("wrong details");
-          console.log(e);
-        });
-    } catch (e) {
-      console.log(e);
+      const response = await axios.post("http://localhost:8000/", {
+        email,
+        password,
+      }, { withCredentials: true });
+
+      if (response.data.message === "exist") {
+        setAuth(true);
+        history("/home", { state: { id: email } });
+        toast.success("succesfull signed in");
+      } else if (response.data.message === "notexist") {
+        toast.error("User not registered");
+      } else if (response.data.error === "Invalid email") {
+        toast.error("Please sign in through registered lnmiit email only");
+      } else if (response.data.error === "Invalid password") {
+        toast.error("Incorrect password");
+      }
+    } catch (error) {
+      toast.error("Wrong details");
+      console.error(error);
     }
   }
 
@@ -107,6 +100,7 @@ function Login({setAuth}) {
     </div>
 
     </div>
+    <ToastContainer />
   </div>
   );
 }

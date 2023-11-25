@@ -3,7 +3,7 @@ import "./navbar.css";
 import { Link ,useNavigate} from 'react-router-dom';
 import Button from './button';
 import axios from 'axios';
-
+import { toast , ToastContainer } from 'react-toastify';
 const Navbar = () => {
     const navigate = useNavigate();
 
@@ -12,6 +12,7 @@ const Navbar = () => {
           const response = await axios.get('http://localhost:8000/logout', { withCredentials: true });
           localStorage.clear();
           if (response.status === 200) {
+            toast.success("successfull logout");
             navigate('/');
           } else {
             console.error('Logout failed with status:', response.status);
@@ -40,6 +41,7 @@ const Navbar = () => {
             <div className="nav3">
               <img className="lnmiit-image" src={process.env.PUBLIC_URL + "/assets/LNMIIT-LOGO.png"} />
             </div>
+            <ToastContainer />
         </div>
     );
 }
