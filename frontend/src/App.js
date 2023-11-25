@@ -13,32 +13,39 @@ import AdminPage from './components/AdminPage/AdminPage';
 import ManageItems from './components/AdminPage/ManageItems';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import { useCallback } from 'react';
 
 function App() {
   const [auth, setAuth] = useState(localStorage.getItem("auth")?true:false);
   
-  async function authF() {
+  // async function authF() {
+  //   try {
+  //     const res = await axios.get("http://localhost:8000/api",{withCredentials:true});
+  //     if (res.data.message === "exist") {
+  //       setAuth(true);
+  //     }
+  //   } catch (error) {
+  //     console.error("error:", error, "you are not logged in");
+  //     setAuth(false);
+  //   } 
+  // }
+  const authF = useCallback(async () => {
+    // ...existing code for authF function
     try {
       const res = await axios.get("http://localhost:8000/api",{withCredentials:true});
       if (res.data.message === "exist") {
-        localStorage.setItem("auth",true);
-        // console.log(res.data.userData);
-        localStorage.setItem("userID",res.data.userData._id)
-        localStorage.setItem("userEmail",res.data.userData.email)
-        localStorage.setItem("userRole",res.data.userData.role)
-        localStorage.setItem("userName",res.data.userData.name)
         setAuth(true);
       }
     } catch (error) {
-      console.error("error:", error, "you are not logged in");
+      // console.error("error:", error, "you are not logged in");
       setAuth(false);
     } 
-  }
+  }, []);
 
   useEffect(() => {
     authF();
     
-  },[]);
+  },[authF]);
 const role=localStorage.getItem("userRole");
   return (
     <Router>
@@ -47,11 +54,11 @@ const role=localStorage.getItem("userRole");
           <Route path="/" element={<Login setAuth={setAuth} />} />
           <Route path="/signup" element={<Signup />} />
           {auth && <Route path="/home" element={<Home />} />}
+          {auth && role==="admin" && <Route path="/admin" element={<AdminPage />} />}
           {auth && <Route path="/Developers" element={<Developers />} />}
           {auth && <Route path="/Sports/:title" element={<AnotherComponent />} />}
           <Route path="*" element={<Error />} />
-          {role==="admin" && <Route path="/admin" element={<AdminPage/>} />}
-          {role==="admin" &&  <Route path="/manage-items" element={<ManageItems/>} />}
+          {auth && role==="admin" &&  <Route path="/manage-items" element={<ManageItems/>} />}
         </Routes>
         <ToastContainer />
       </div>
