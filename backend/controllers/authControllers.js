@@ -1,5 +1,7 @@
 import StudentInfo from "../models/StudentDetails.js";
 import jwt from "jsonwebtoken"
+import bcrypt from "bcrypt"
+
 
 const secret= "dhruv123"
 export const authController = {
@@ -7,7 +9,20 @@ export const authController = {
     const { email, password } = req.body;
     try {
       const check = await StudentInfo.findOne({ email });
+      if(!check)
+      {
+        return res.json({message: "notexist"});
+      }
       console.log(check);
+      const checkDomain=email.split("@").pop();
+      if(checkDomain!=="lnmiit.ac.in")
+      {
+        return res.json({error: "Invalid email"});
+      }
+      const isPasswordMatch = await bcrypt.compare(password, check.password);
+      if (!isPasswordMatch) {
+        return res.status(401).json({ error: "Invalid password" });
+      }
       if (check) {
         const token = generateToken({
           id: check._id,
@@ -15,9 +30,7 @@ export const authController = {
           role: check.role 
         });
         console.log(token);
-        if (password !== check.password) {
-          return res.status(401).json({ error: "Invalid password" });
-        }
+
         res.cookie("token", token, { httpOnly: true ,maxAge: 24*60*60*1000});
         
         return res.json({message: "exist",token: token});
@@ -38,10 +51,11 @@ export const authController = {
   },
   signupUser: async (req, res) => {
     const { email, password, name } = req.body;
+    const hashedPassword =await bcrypt.hash(password,10);
     const data = {
       name: name,
       email: email,
-      password: password,
+      password: hashedPassword,
       role:"user"
     };
 
@@ -49,7 +63,13 @@ export const authController = {
       const check = await StudentInfo.findOne({ email });
       if (check) {
         res.json({message: "exist"});
-      } else {
+      } 
+
+      const checkDomain=email.split("@").pop();
+      if(checkDomain!=="lnmiit.ac.in")
+      {
+        return res.json({error: "Invalid email"});
+      }else {
         res.json({message: "notexist"});
         await StudentInfo.insertMany([data]);
       }

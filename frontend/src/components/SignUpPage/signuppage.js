@@ -1,44 +1,55 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./signuppage.css";
 
 function Signup() {
   const history = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [name,setName] = useState("");
+  const [name, setName] = useState("");
 
   async function submit(e) {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      alert("Passwords do not match. Please try again.");
+      toast.error("Passwords do not match. Please try again.");
+      return;
+    }
+
+    let count = 0;
+    for (let i = 0; i < email.length; i++) {
+      if (email[i] === "@") {
+        count++;
+      }
+    }
+
+    if (count !== 1) {
+      toast.error("Please enter a correct email");
       return;
     }
 
     try {
-      await axios
-        .post("http://localhost:8000/signup", {
-          name,
-          email,
-          password,
-        },{withCredentials:true})
-        .then((res) => {
-          if (res.data.message === "exist") {
-            alert("User already exists");
-          } else if (res.data.message === "notexist") {
-            history("/", { state: { id: email } });
-          }
-        })
-        .catch((e) => {
-          alert("Wrong details");
-          console.log(e);
-        });
-    } catch (e) {
-      console.log(e);
+      const response = await axios.post("http://localhost:8000/signup", {
+        name,
+        email,
+        password,
+      }, { withCredentials: true });
+
+      if (response.data.message === "exist") {
+        toast.error("User already exists");
+      } else if (response.data.message === "notexist") {
+        toast.success("Signup successful!");
+        history("/", { state: { id: email } });
+      } else if (response.data.error === "Invalid email") {
+        toast.error("Please sign up through a registered lnmiit email only");
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
+      console.error(error);
     }
   }
 
@@ -115,6 +126,7 @@ function Signup() {
 
       
       </div>
+      <ToastContainer />
     </div>
   );
 }
