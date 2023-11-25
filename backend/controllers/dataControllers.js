@@ -27,7 +27,7 @@ const getSportsData = {
   },
   addItem:async (req, res) => {
     const sportName = req.params.sportName;
-    const { nameOfSportsEquipment, quantityOfSportsEquipment, isDamaged, imageLink } = req.body;
+    const { nameOfSportsEquipment, quantityOfSportsEquipment, imageLink } = req.body;
   
     try {
       const sport = await SportsDetails.findOne({ sportName });
@@ -36,10 +36,10 @@ const getSportsData = {
         return res.status(404).json({ message: 'Sport not found' });
       }
       const newItem = {
-        nameOfSportsEquipment,
-        quantityOfSportsEquipment,
+        nameOfSportsEquipment:nameOfSportsEquipment,
+        quantityOfSportsEquipmen:quantityOfSportsEquipment,
         isDamaged:false,
-        imageLink,
+        imageLi:imageLink,
       };
       sport.Inventory.push(newItem);
       await sport.save();
@@ -51,7 +51,7 @@ const getSportsData = {
     }
   },
   reserveItem: async (req, res) => {
-    const { itemID, userEmail, time,imageLink,sportName } = req.body; 
+    const { itemName,itemID, userEmail, time,imageLink,sportName } = req.body; 
   
     try {
       const newRequest = {
@@ -59,7 +59,8 @@ const getSportsData = {
         itemID: itemID,
         userEmail: userEmail,
         time: time,
-        imageLink:imageLink
+        imageLink:imageLink,
+        itemName:itemName
       };
   
       await RequestInfo.insertMany([newRequest]);

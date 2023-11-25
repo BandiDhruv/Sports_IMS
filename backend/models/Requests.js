@@ -9,6 +9,10 @@ const RequestDetails = new mongoose.Schema({
     type: String,
     required: true,
   },
+  itemName:{
+    type:String,
+    required:true,
+  },
   status: {
     type: String,
     enum: ["accepted", "pending", "rejected"], 

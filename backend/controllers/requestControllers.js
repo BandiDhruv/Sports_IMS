@@ -8,7 +8,7 @@ const getRequestData = {
           res.status(200).json({message:"success",details:allDetails})
         }catch(err)
         {
-          console.error("error fetching reuest from database",err);
+          console.error("error fetching request from database",err);
           res.status(500).json({error:"Failed to fetch request details"});
         }
     },
