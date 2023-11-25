@@ -18,7 +18,18 @@ function Signup() {
       alert("Passwords do not match. Please try again.");
       return;
     }
-
+    let count=0;
+    for(let i=0;i<email.length;i++)
+    {
+      if(email[i]==='@'){
+        count++;
+      }
+    }
+    if(count!==1)
+    {
+      alert("Please enter correct email");
+    }
+    else{
     try {
       await axios
         .post("http://localhost:8000/signup", {
@@ -32,6 +43,9 @@ function Signup() {
           } else if (res.data.message === "notexist") {
             history("/", { state: { id: email } });
           }
+          else if(res.data.error==="Invalid email"){
+            alert("Please sign up through registered lnmiit email only");
+          }
         })
         .catch((e) => {
           alert("Wrong details");
@@ -39,7 +53,7 @@ function Signup() {
         });
     } catch (e) {
       console.log(e);
-    }
+    }}
   }
 
   return (
