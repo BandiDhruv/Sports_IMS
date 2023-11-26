@@ -32,7 +32,7 @@ export const authenticateToken={
         return res.status(404).json({ message: "Not logged in" });
       }
       
-      res.json({ message: "exist" ,userData: check});
+      res.json({ message: "exist"});
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Internal server error" });

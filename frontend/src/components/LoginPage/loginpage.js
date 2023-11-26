@@ -10,6 +10,26 @@ function Login({ setAuth }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const checkElapsedTime = () => {
+    const loginTime = localStorage.getItem('loginTime');
+    if (loginTime) {
+      const currentTime = new Date().getTime();
+      const elapsedTime = currentTime - parseInt(loginTime, 10);
+      const thirtyMinutes = 30 * 60 * 1000; // 30 minutes in milliseconds
+  
+      if (elapsedTime >= thirtyMinutes) {
+        // Logout logic - call your logout route or perform logout actions
+        logoutUser();
+      }
+    }
+  };
+  const logoutUser = () => {
+    localStorage.removeItem('loginTime');
+  };
+  const startLogoutTimer = () => {
+    setInterval(checkElapsedTime, 60000*15); 
+  };
+
   async function submit(e) {
     e.preventDefault();
 
@@ -20,9 +40,32 @@ function Login({ setAuth }) {
       }, { withCredentials: true });
 
       if (response.data.message === "exist") {
+        const ls=response.data.data;
+        localStorage.setItem("auth",true);
+        localStorage.setItem("userID",ls._id)
+        localStorage.setItem("auth",true)
+        localStorage.setItem("userEmail",ls.email)
+        localStorage.setItem("userRole",ls.role)
+        const loginTime = new Date().getTime();
+        localStorage.setItem("loginTime",loginTime);
         setAuth(true);
-        history("/home", { state: { id: email } });
-        toast.success("succesfull signed in");
+        const role=localStorage.getItem("userRole");
+        startLogoutTimer();
+
+        console.log(role);
+          if(role==="user"){
+            history("/home");
+            toast.success("succesfull signed in");
+          }
+          else if(role==="admin"){
+            history("/admin");
+            toast.success("succesfull signed in");
+          }
+          else
+          {
+            toast.error("Oops an error occured");
+            history("*")
+          }
       } else if (response.data.message === "notexist") {
         toast.error("User not registered");
       } else if (response.data.error === "Invalid email") {

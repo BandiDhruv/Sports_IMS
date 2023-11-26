@@ -33,7 +33,7 @@ export const authController = {
 
         res.cookie("token", token, { httpOnly: true ,maxAge: 24*60*60*1000});
         
-        return res.json({message: "exist",token: token});
+        return res.json({message: "exist",token: token,data: check});
       } else {
         return res.json({message: "notexist"});
       }
@@ -92,6 +92,6 @@ export const authController = {
 };
 const generateToken = (user) => {
   return jwt.sign(user, secret, {
-    expiresIn: '30m',
+    expiresIn: '30h',
   });
 };

@@ -54,6 +54,7 @@ const AnotherComponent = () => {
             itemID: equipment._id,
             time: currentTime,
             imageLink: equipment.imageLink,
+            itemName: equipment.nameOfSportsEquipment,
           },
           { withCredentials: true }
         )
@@ -132,6 +133,7 @@ const AnotherComponent = () => {
                         RESERVE
                       </button>
                     )}
+                    
                   {statusData.map((item) => {
                     if (item.itemID === equipments._id) {
                       if (item.status === "pending") {
@@ -144,7 +146,6 @@ const AnotherComponent = () => {
                           </button>
                         );
                       } else if (item.status === "accepted") {
-                        toast.success("Reservation accepted");
                         return (
                           <button
                             key={`accepted-${item.itemID}`}
@@ -154,7 +155,6 @@ const AnotherComponent = () => {
                           </button>
                         );
                       } else if (item.status === "rejected") {
-                        toast.error("Reservation rejected");
                         return (
                           <button
                             key={`rejected-${item.itemID}`}
