@@ -59,7 +59,7 @@ function Signup() {
 
       <div className="box1">
             <div className="lnmiit-logo">
-              <img className="lnmiit-img" src={process.env.PUBLIC_URL + "/assets/LNMIIT-LOGO.png"} />
+              <img className="lnmiit-img" src={process.env.PUBLIC_URL + "/assets/LNMIIT-LOGO.png"} alt ="na"/>
             </div>
       </div>
       

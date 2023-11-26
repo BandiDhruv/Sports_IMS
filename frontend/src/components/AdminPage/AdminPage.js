@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Button from "../Home/Button";
+import Button  from "../Home/Button";
 import "./AdminPage.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 
 const AdminPage = () => {
   const [requestData, setRequestData] = useState([]);
@@ -19,6 +20,7 @@ const AdminPage = () => {
     getDetails();
   }, []);
   const navigate = useNavigate();
+
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -60,7 +62,7 @@ const AdminPage = () => {
     }
   };
 
-  const handleStatusChange = async (id, newStatus) => {
+  const handleStatusChange = async (email,item,id, newStatus) => {
     try {
       const response = await axios.patch(
         `http://localhost:8000/update-status/${id}`,
@@ -69,8 +71,10 @@ const AdminPage = () => {
       );
 
       if (response.status === 200) {
-        // console.log(response.data);
         fetchData();
+        if(email)
+          sendEmail({status:newStatus,itemName:item,email:email})
+        else console.log("error bro");
       } else {
         console.error("Failed to update status:", response.statusText);
       }
@@ -89,6 +93,25 @@ const AdminPage = () => {
       [name]: value,
     });
   };
+  async function sendEmail(prop){
+    try{
+      const sEmail=localStorage.getItem("userEmail");
+      const res=await axios.post("http://localhost:8000/send-email",{
+      senderEmail:sEmail,
+      recieverEmail:prop.email,
+      itemName:prop.itemName,
+      status:prop.status
+    },{withCredentials:true})
+    if(res.status===201){
+      console.log("mail sent successfully");
+    }
+    else if(res.status===500){
+      console.error("some error occured",res.data);
+    }
+    } catch(err){
+    console.error("Error sending mail",err);
+  }
+}
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -100,7 +123,6 @@ const AdminPage = () => {
       );
 
       if (response.status === 201) {
-        // console.log('New item added successfully!');
         setNewSport({
           sportName: "",
           inventory: [],
@@ -228,12 +250,12 @@ const AdminPage = () => {
               </div>
               <div className="admin-items-inner3">
                 <button
-                  onClick={() => handleStatusChange(item._id, "accepted")}
+                  onClick={() => handleStatusChange(item.userEmail,item.itemName,item._id, "accepted")}
                 >
                   Accept
                 </button>
                 <button
-                  onClick={() => handleStatusChange(item._id, "rejected")}
+                  onClick={() => handleStatusChange(item.userEmail,item.itemName,item._id, "rejected")}
                 >
                   Reject
                 </button>

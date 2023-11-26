@@ -24,7 +24,7 @@ const Navbar = () => {
     return (
         <div className='navbar'>
             <div className="nav1">
-            <Link to="/home" ><img className='navbar-logo' src={process.env.PUBLIC_URL + "/assets/main-logo.png"}/></Link>
+            <Link to="/home" ><img className='navbar-logo' src={process.env.PUBLIC_URL + "/assets/main-logo.png"} alt='na'/></Link>
             </div>
             <div className="nav2">
                 <Link to="/home" className="homebutton">

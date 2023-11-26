@@ -42,6 +42,7 @@
     padding: 2rem;
     background-color: #f2f3f5;
     box-shadow: 10px 10px 5px 2px rgb(206,205,205);
+    border-radius: 1rem;
 }
 
 .manage-sport-image{

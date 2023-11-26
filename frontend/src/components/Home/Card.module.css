@@ -8,6 +8,7 @@
     width: 16rem;
     padding:  2rem;
     border-radius: 10px;
+    /* height: 8rem; */
   }
   
   .card img {
@@ -23,9 +24,18 @@
   }
 
   .p{
+    height: 10rem;
+    overflow-y: auto;
     text-align: center;
     color: white;
   }
+  .p::-webkit-scrollbar {
+    width: 0.5rem;
+}  
+.p::-webkit-scrollbar-thumb {
+    background:  rgb(197, 193, 193);
+    border-radius: 0.5rem;
+}
   
 @media screen and (max-width:550px){
     .card{

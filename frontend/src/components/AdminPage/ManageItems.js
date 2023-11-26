@@ -15,12 +15,14 @@ const ManageItems = () => {
       console.error("Error fetching data", err);
     }
   }
+  const [temp,setTemp]=useState(0);
 
   async function increment(sport,id) {
     try {
         console.log(id);
       const res = await axios.patch(`http://localhost:8000/increment-quantity/${sport}/${id}`, {}, { withCredentials: true });
       console.log(res.data); // Check the response
+      setTemp(temp+1);
     } catch (err) {
       console.error("Error incrementing quantity", err);
     }
@@ -30,6 +32,7 @@ const ManageItems = () => {
         console.log(id);
       const res = await axios.patch(`http://localhost:8000/decrement-quantity/${sport}/${id}`, {}, { withCredentials: true });
       console.log(res.data); // Check the response
+      setTemp(temp-1);
     } catch (err) {
       console.error("Error incrementing quantity", err);
     }
@@ -38,10 +41,12 @@ const ManageItems = () => {
 
   useEffect(() => {
     getDetails();
-    increment();
-    decrement();
-  }, []);
+    // increment();
+    // toggleDetails();
+    // decrement();
+  }, [temp]);
 
+  console.log(data);
   const toggleDetails = (index) => {
     const newData = [...data];
     newData[index].showDetails = !newData[index].showDetails;
