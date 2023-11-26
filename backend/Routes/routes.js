@@ -51,4 +51,7 @@ router.post("/signup", authController.signupUser);
 // route for user to logout
 router.get("/logout",authController.logoutUser);
 
+// route for sending email
+router.post("/send-email",getRequestData.sendMail)
+
 export default router;

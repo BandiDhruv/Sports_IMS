@@ -1,5 +1,7 @@
 import RequestInfo from "../models/Requests.js";
 import SportsDetails from "../models/Sports.js";
+import nodemailer from "nodemailer"
+import Mailgen from "mailgen";
 
 const getRequestData = {
     requestedData: async(req,res)=>{
@@ -114,6 +116,47 @@ const getRequestData = {
           res.status(500).json({ error: 'Internal server error' });
         }
       },
+      sendMail:async (req,res)=>{
+        const {senderEmail,recieverEmail,itemName,status}=req.body;
+        let config ={
+          service:'gmail',
+          auth:{
+            user:"dhruvbandi03@gmail.com",
+            pass:'ggsy qkfb gczv nqec'
+          }
+        }
+        let transporter = nodemailer.createTransport(config);
+        
+        let MailGenerator = new Mailgen({
+          theme: "default",
+          product:{
+            name: "Mailgen",
+            link: 'https://mailgen.js/'
+          }
+
+        })
+        let response ={
+          body:{
+            name:recieverEmail,
+            intro:`Your request for reserving item ${itemName} has been ${status}`,
+            outro:"Thank You"
+          }
+        }
+        let mail=MailGenerator.generate(response);
+        let message={
+          from: senderEmail, 
+          to: recieverEmail, 
+          subject:"SIMS Equipment Reservation Systems",
+          html:mail
+        };
+        transporter.sendMail(message).then(()=>{
+          return res.status(201).json({mes:"mail sent successfuly"})
+        }).catch(err=>{
+          console.log(err);
+          return res.status(500).json(err)
+        })
+
+      }
 
 
 };
