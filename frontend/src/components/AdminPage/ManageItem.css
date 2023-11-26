@@ -1,12 +1,3 @@
-.manage-container{
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    /* gap: 3rem; */
-}
 .admin-button{
     background-color: #1888ff;
     border-radius: 4px;
@@ -18,6 +9,7 @@
     height: 3rem;
     padding: .5rem 1.25rem;
 }
+
 .manage-navbar{
     display: flex;
     flex-direction: row;    
@@ -27,50 +19,44 @@
     align-items: center;
     justify-content: center;
 }
+
 .manage-sport{
     height:90vh;
     width: 100%;
-    /* background-color: red; */
 }
+
 .sport-details{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-    /* background-color: rgb(238, 238, 238);  */
-    
 }
 
 .sport-inner{
     display: flex;
-    flex-direction: row;
-    margin-bottom: 1rem;
-    gap: 1rem;
-    width: 100vw;
-    column-gap: 11rem;
+    flex-direction: column;
+    width: auto;
     justify-content: center;
     align-items: center;
-    
+    padding: 2rem;
+    background-color: #f2f3f5;
+    box-shadow: 10px 10px 5px 2px rgb(206,205,205);
 }
 
-.r3{
-    display: flex;
-    height: 100px;
-    width: 100px;
-    /* background-color: blue; */
-    
-}
 .manage-sport-image{
-    height: 100%;
-    width: 100%;
+    height: 200px;
+    width: 200px;
+}
 
-}
 .ruler{
-    width: 99%;
-    height: 2px;
-    background-color: #1c4a7c;
+    width: 80%;
+    margin-top: 1rem;
+    border: 0;
+    height: 3px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(9, 84, 132), rgba(0, 0, 0, 0));
 }
+
 .chng-btn{
     width: 30px;
     font-weight: bold;
@@ -82,36 +68,73 @@
     outline: none;
     border: none;
 }
+
 .sport-quant{
     font-weight: bold;
     padding: 0.5rem;
 }
+
 .sport-equipment{
     font-weight: bold;
     font-size: 1.2rem;
-   
-}
-.r1{
-    font-size: 1.2rem;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
-    
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
 }
+
 .sport-name{
     cursor: pointer;
     margin-top: 0.5rem;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     height: 10vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .sport-inner:hover{
-    background-color: rgb(238, 238, 238); ;
+    cursor: pointer;
+    background-color: rgb(224, 218, 218) ;
 }
+
 .toggle-icon{
     cursor: pointer;
-padding: 1rem;
+    padding: 1rem;
+    margin-top: 7%;
+}
+
+.sport-inventory{
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: auto;
+    height: 100%;
+}
+
+@media screen and ( max-width:400px){
+    .sport-name{
+        font-size: 1.5rem;
+    }
+    .manage-sport-image{
+        height: 120px;
+        width: 120px;
+    }
+    .sport-inner{
+        padding: 1rem;
+    }
+    .sport-equipment{
+        font-size: 0.8rem;
+        gap: 0.3rem;
+    }
+    .chng-btn{
+        height: 25px;
+        width: 25px;
+    }
 }
