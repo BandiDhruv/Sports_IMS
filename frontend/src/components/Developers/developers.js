@@ -21,6 +21,7 @@ const Developers = () => {
 
         <div className='developer-box'>
           <img src={process.env.PUBLIC_URL + "/assets/Dhruv.jpg"} className='developer-image'/>
+          <div className='developer-box-line'></div>
           <h3 className='developer-box-heading'>DHRUV BANDI</h3>
           <span>21ucs065@lnmiit.ac.in</span>
           <p>Developer</p>
@@ -28,6 +29,7 @@ const Developers = () => {
 
           <div className='developer-box'>
           <img src={process.env.PUBLIC_URL + "/assets/Divyanshi.jpg"} className='developer-image'/>
+          <div className='developer-box-line'></div>
           <h3 className='developer-box-heading'>DIVYANSHI AGARWAL</h3>
           <span>21ucs074@lnmiit.ac.in</span>
           <p>Frontend Developer</p>
@@ -39,6 +41,7 @@ const Developers = () => {
        
         <div className='developer-box'>
           <img src={process.env.PUBLIC_URL + "/assets/Abhinav.JPG"} className='developer-image'/>
+          <div className='developer-box-line'></div>
           <h3 className='developer-box-heading'>ABHINAV MIDHA</h3>
           <span>21ucs003@lnmiit.ac.in</span>
           <p>Design</p>
@@ -46,6 +49,7 @@ const Developers = () => {
 
           <div className='developer-box' >
           <img src={img} className='developer-image'/>
+          <div className='developer-box-line'></div>
           <h3 className='developer-box-heading'>CHANDANDEEP SINGH</h3>
           <span>21ucs049@lnmiit.ac.in</span>
           <p>Design</p>
@@ -57,6 +61,7 @@ const Developers = () => {
         
           <div className='developer-box' >
           <img src={process.env.PUBLIC_URL + "/assets/Ananya.JPG"} className='developer-image'/>
+          <div className='developer-box-line'></div>
           <h3 className='developer-box-heading'>ANANYA KHADRIA</h3>
           <span >21ucs019@lnmiit.ac.in</span>
           <p >Product Manager</p>

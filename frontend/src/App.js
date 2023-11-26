@@ -46,12 +46,12 @@ const role=localStorage.getItem("userRole");
         <Routes>
           <Route path="/" element={<Login setAuth={setAuth} />} />
           <Route path="/signup" element={<Signup />} />
-          {auth && <Route path="/home" element={<Home />} />}
-          {auth && <Route path="/Developers" element={<Developers />} />}
-          {auth && <Route path="/Sports/:title" element={<AnotherComponent />} />}
+          {/*auth && */<Route path="/home" element={<Home />} />}
+          {/*auth && */<Route path="/Developers" element={<Developers />} />}
+          {/*auth && */<Route path="/Sports/:title" element={<AnotherComponent />} />}
           <Route path="*" element={<Error />} />
-          {role==="admin" && <Route path="/admin" element={<AdminPage/>} />}
-          {role==="admin" &&  <Route path="/manage-items" element={<ManageItems/>} />}
+          {/*role==="admin" &&*/ <Route path="/admin" element={<AdminPage/>} />}
+          {/*role==="admin" &&  */<Route path="/manage-items" element={<ManageItems/>} />}
         </Routes>
         <ToastContainer />
       </div>
