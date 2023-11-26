@@ -30,6 +30,7 @@
 @media screen and (max-width:550px){
     .card{
       width: 10rem;
+     
     }
     .card img {
       width: 100%;
