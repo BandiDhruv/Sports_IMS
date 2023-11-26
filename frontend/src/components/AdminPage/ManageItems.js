@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './ManageItem.css';
+import { IoIosArrowDropdownCircle,IoIosArrowDropupCircle } from "react-icons/io";
+
 
 const ManageItems = () => {
   const [data, setData] = useState([]);
@@ -57,25 +59,34 @@ const ManageItems = () => {
       {data.map((sport, index) => (
         <div key={sport._id} className="sport-details">
           <div className="sport-name" onClick={() => toggleDetails(index)}>
-            {sport.sportName} <span className='toggle-icon'>{sport.showDetails ? '▲' : '▼'}</span>
+            {sport.sportName} <span className='toggle-icon'>{sport.showDetails ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle /> }</span>
           </div>
           {sport.showDetails && (
             <div className="sport-inventory">
               {sport.Inventory.map((item, i) => (
+
                 <div className="sport-inner" key={item._id}>
-                  <div className="r1">
-                   <span className='sport-equipment'> Equipment :- </span> {item.nameOfSportsEquipment}
+                   
+                  <img className="manage-sport-image" src={item.imageLink} alt="na" />
+                  
+                  <div className='sport-equipment'> 
+                  <div> Equipment :- </div> 
+                  <div > {item.nameOfSportsEquipment}</div>
                   </div>
-                  <div className="r2">
-                   <span className='sport-equipment'>
-                   Quantity :- </span>  <button className='chng-btn' onClick={() => increment(sport.sportName,item._id)}>+</button><span className='sport-quant'>
+                  
+                  <div className='sport-equipment'>
+                   <div>Quantity :- </div>
+                   <div>
+                    <button className='chng-btn' onClick={() => increment(sport.sportName,item._id)}>+</button>
+                    </div>
+                    <div className='sport-quant'>
                    {item.quantityOfSportsEquipment} 
-                   </span>
-<button className='chng-btn' onClick={() => decrement(sport.sportName,item._id)}>-</button>
                   </div>
-                  <div className="r3">
-                    <img className="manage-sport-image" src={item.imageLink} alt="na" />
-                  </div>
+                  <div>
+                  <button className='chng-btn' onClick={() => decrement(sport.sportName,item._id)}>-</button>
+                 </div>
+                 </div>
+                 
                 </div>
               ))}
             </div>
