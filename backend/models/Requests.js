@@ -13,6 +13,10 @@ const RequestDetails = new mongoose.Schema({
     type:String,
     required:true,
   },
+  itemQuantity:{
+    type:Number,
+    required:true,
+  },
   status: {
     type: String,
     enum: ["accepted", "pending", "rejected"], 

@@ -7,6 +7,7 @@ const getRequestData = {
     requestedData: async(req,res)=>{
         try{
           const allDetails=await RequestInfo.find({});
+          // const quan=await SportsDetails.find({});
           res.status(200).json({message:"success",details:allDetails})
         }catch(err)
         {
@@ -34,7 +35,7 @@ const getRequestData = {
       
         try {
           const sport = await SportsDetails.findOne({ sportName });
-      
+          // const reqsport = await RequestInfo.findOne({itemId});
           if (!sport) {
             return res.status(404).json({ message: 'Sport not found' });
           }
@@ -44,11 +45,13 @@ const getRequestData = {
           if (!inventoryItem) {
             return res.status(404).json({ message: 'Item not found in the inventory' });
           }
-      
+          // reqsport.itemQuantity+=1;
           inventoryItem.quantityOfSportsEquipment += 1;
       
           await sport.save();
-      
+          // await reqsport.save();
+          
+          
           res.status(200).json({ message: 'Quantity updated successfully', sport });
         } catch (err) {
           console.error('Error updating quantity:', err);
@@ -57,9 +60,9 @@ const getRequestData = {
       },
       decrement:async (req, res) => {
         const { sportName, itemId } = req.params;
-      
         try {
           
+          // const reqsport = await RequestInfo.findOne({itemId});
           const sport = await SportsDetails.findOne({ sportName });
       
           if (!sport) {
@@ -71,10 +74,11 @@ const getRequestData = {
           if (!inventoryItem) {
             return res.status(404).json({ message: 'Item not found in the inventory' });
           }
-          
+          // reqsport.itemQuantity-=1;
           inventoryItem.quantityOfSportsEquipment -= 1;
       
           await sport.save();
+          // await reqsport.save();
       
           res.status(200).json({ message: 'Quantity updated successfully', sport });
         } catch (err) {
@@ -102,6 +106,12 @@ const getRequestData = {
               { $inc: { 'Inventory.$.quantityOfSportsEquipment': -1 } }, // Decrement the quantity by 1
               { new: true }
             );
+            const reqsport = await RequestInfo.findOneAndUpdate(
+              { itemName: sname, itemID: itemId },
+              { $inc: { itemQuantity: -1 } }, // Decrement the quantity by 1
+              { new: true }
+            );
+            
       
             if (!sport) {
               return res.status(404).json({ message: 'Sport or inventory item not found' });

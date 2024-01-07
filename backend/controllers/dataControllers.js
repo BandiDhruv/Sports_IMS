@@ -51,7 +51,7 @@ const getSportsData = {
     }
   },
   reserveItem: async (req, res) => {
-    const { itemName,itemID, userEmail, time,imageLink,sportName } = req.body; 
+    const { itemName,itemID, userEmail, time,imageLink,sportName,itemQuantity } = req.body; 
   
     try {
       const newRequest = {
@@ -60,7 +60,8 @@ const getSportsData = {
         userEmail: userEmail,
         time: time,
         imageLink:imageLink,
-        itemName:itemName
+        itemName:itemName,
+        itemQuantity:itemQuantity,
       };
   
       await RequestInfo.insertMany([newRequest]);
