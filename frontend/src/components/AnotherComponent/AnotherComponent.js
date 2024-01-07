@@ -55,6 +55,7 @@ const AnotherComponent = () => {
             time: currentTime,
             imageLink: equipment.imageLink,
             itemName: equipment.nameOfSportsEquipment,
+            itemQuantity:equipment.quantityOfSportsEquipment,
           },
           { withCredentials: true }
         )

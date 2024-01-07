@@ -61,7 +61,7 @@ const AdminPage = () => {
       console.error("Error fetching data:", error);
     }
   };
-
+  console.log(requestData);
   const handleStatusChange = async (email,item,id, newStatus) => {
     try {
       const response = await axios.patch(
@@ -69,15 +69,16 @@ const AdminPage = () => {
         { status: newStatus },
         { withCredentials: true }
       );
-
+        
       if (response.status === 200) {
-        fetchData();
+        // fetchData();
         if(email)
           sendEmail({status:newStatus,itemName:item,email:email})
         else console.log("error bro");
       } else {
         console.error("Failed to update status:", response.statusText);
       }
+      // fetchData();
     } catch (error) {
       console.error("Error updating status:", error);
     }
@@ -247,13 +248,14 @@ const AdminPage = () => {
                 <h2>{item.itemName}</h2>
                 <p>Email: {item.userEmail}</p>
                 {<p>Time Requested: {item.time}</p>}
+                <p>Available Now: {item.itemQuantity}</p>
               </div>
               <div className="admin-items-inner3">
-                <button
+                {(item.itemQuantity!==0) && <button
                   onClick={() => handleStatusChange(item.userEmail,item.itemName,item._id, "accepted")}
                 >
                   Accept
-                </button>
+                </button>}
                 <button
                   onClick={() => handleStatusChange(item.userEmail,item.itemName,item._id, "rejected")}
                 >

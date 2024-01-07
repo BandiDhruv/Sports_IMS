@@ -40,15 +40,15 @@ const Developers = () => {
           <div className='developer-box-line'></div>
           <h3 className='developer-box-heading'>ABHINAV MIDHA</h3>
           <span>21ucs003@lnmiit.ac.in</span>
-          <p>Design</p>
+          <p>Design/Tester</p>
           </div>
 
           <div className='developer-box' >
-          <img src={img}  alt="na" className='developer-image'/>
+          <img src={process.env.PUBLIC_URL + "/assets/chandan.JPG"}  alt="na" className='developer-image'/>
           <div className='developer-box-line'></div>
           <h3 className='developer-box-heading'>CHANDANDEEP SINGH</h3>
           <span>21ucs049@lnmiit.ac.in</span>
-          <p>Design</p>
+          <p>Design/Tester</p>
           
           </div>
         </div>
@@ -60,7 +60,7 @@ const Developers = () => {
           <div className='developer-box-line'></div>
           <h3 className='developer-box-heading'>ANANYA KHADRIA</h3>
           <span >21ucs019@lnmiit.ac.in</span>
-          <p >Product Manager</p>
+          <p >Product Manager/Tester</p>
           </div>
 
         </div>

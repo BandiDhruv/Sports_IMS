@@ -8,7 +8,6 @@ import AnotherComponent from "./components/AnotherComponent/AnotherComponent";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Error from '../src/components/ErrorPage/Error'
-// import { faTruckField } from '@fortawesome/free-solid-svg-icons';
 import AdminPage from './components/AdminPage/AdminPage';
 import ManageItems from './components/AdminPage/ManageItems';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,27 +16,14 @@ import { useCallback } from 'react';
 
 function App() {
   const [auth, setAuth] = useState(localStorage.getItem("auth")?true:false);
-  
-  // async function authF() {
-  //   try {
-  //     const res = await axios.get("http://localhost:8000/api",{withCredentials:true});
-  //     if (res.data.message === "exist") {
-  //       setAuth(true);
-  //     }
-  //   } catch (error) {
-  //     console.error("error:", error, "you are not logged in");
-  //     setAuth(false);
-  //   } 
-  // }
+
   const authF = useCallback(async () => {
-    // ...existing code for authF function
     try {
       const res = await axios.get("http://localhost:8000/api",{withCredentials:true});
       if (res.data.message === "exist") {
         setAuth(true);
       }
     } catch (error) {
-      // console.error("error:", error, "you are not logged in");
       setAuth(false);
     } 
   }, []);
