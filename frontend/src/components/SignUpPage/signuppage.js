@@ -33,7 +33,7 @@ function Signup() {
     }
 
     try {
-      const response = await axios.post("http://localhost:8000/signup", {
+      const response = await axios.post("https://sports-ims.onrender.com/signup", {
         name,
         email,
         password,

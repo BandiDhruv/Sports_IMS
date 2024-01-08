@@ -24,7 +24,7 @@ const AdminPage = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/request-details",
+        "https://sports-ims.onrender.com/request-details",
         { withCredentials: true }
       );
 
@@ -65,11 +65,11 @@ const AdminPage = () => {
   const handleStatusChange = async (email,item,id, newStatus) => {
     try {
       const response = await axios.patch(
-        `http://localhost:8000/update-status/${id}`,
+        `https://sports-ims.onrender.com/update-status/${id}`,
         { status: newStatus },
         { withCredentials: true }
       );
-        
+      
       if (response.status === 200) {
         // fetchData();
         if(email)
@@ -97,7 +97,7 @@ const AdminPage = () => {
   async function sendEmail(prop){
     try{
       const sEmail=localStorage.getItem("userEmail");
-      const res=await axios.post("http://localhost:8000/send-email",{
+      const res=await axios.post("https://sports-ims.onrender.com/send-email",{
       senderEmail:sEmail,
       recieverEmail:prop.email,
       itemName:prop.itemName,
@@ -118,7 +118,7 @@ const AdminPage = () => {
     try {
       const { sportName, ...itemDetails } = newSport;
       const response = await axios.post(
-        `http://localhost:8000/add-item/${sportName}`,
+        `https://sports-ims.onrender.com/add-item/${sportName}`,
         itemDetails,
         { withCredentials: true }
       );
@@ -140,7 +140,7 @@ const AdminPage = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/logout", {
+      const response = await axios.get("https://sports-ims.onrender.com/logout", {
         withCredentials: true,
       });
       localStorage.clear();
@@ -157,7 +157,7 @@ const AdminPage = () => {
 
   async function getDetails() {
     try {
-      const response = await axios.get("http://localhost:8000/InventoryData", {
+      const response = await axios.get("https://sports-ims.onrender.com/InventoryData", {
         withCredentials: true,
       });
       setData(response.data);

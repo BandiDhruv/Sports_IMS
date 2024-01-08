@@ -34,7 +34,7 @@ function Login({ setAuth }) {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8000/", {
+      const response = await axios.post("https://sports-ims.onrender.com/", {
         email,
         password,
       }, { withCredentials: true });

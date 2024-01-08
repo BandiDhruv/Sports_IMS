@@ -9,7 +9,7 @@ const Navbar = () => {
 
     const handleLogout = async () => {
         try {
-          const response = await axios.get('http://localhost:8000/logout', { withCredentials: true });
+          const response = await axios.get('https://sports-ims.onrender.com/logout', { withCredentials: true });
           localStorage.clear();
           if (response.status === 200) {
             toast.success("successfull logout");
