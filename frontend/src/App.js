@@ -19,7 +19,7 @@ function App() {
 
   const authF = useCallback(async () => {
     try {
-      const res = await axios.get("http://localhost:8000/api",{withCredentials:true});
+      const res = await axios.get("https://sports-ims.onrender.com/api"/*,{withCredentials:true}*/);
       if (res.data.message === "exist") {
         setAuth(true);
       }
