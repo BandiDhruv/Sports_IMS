@@ -31,7 +31,7 @@ export const authController = {
         });
         console.log(token);
 
-        res.cookie("token", token, { httpOnly: true ,maxAge: 24*60*60*1000});
+        res.cookie("token", token, { maxAge: 24*60*60*1000});
         
         return res.json({message: "exist",token: token,data: check});
       } else {
