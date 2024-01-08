@@ -37,7 +37,7 @@ function Signup() {
         name,
         email,
         password,
-      }, { withCredentials: true });
+      });
 
       if (response.data.message === "exist") {
         toast.error("User already exists");

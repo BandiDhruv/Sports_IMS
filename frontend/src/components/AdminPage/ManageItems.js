@@ -9,7 +9,7 @@ const ManageItems = () => {
 
   async function getDetails() {
     try {
-      const response = await axios.get("https://sports-ims.onrender.com/InventoryData", { withCredentials: true });
+      const response = await axios.get("https://sports-ims.onrender.com/InventoryData");
       setData(response.data);
     } catch (err) {
       console.error("Error fetching data", err);
@@ -20,7 +20,7 @@ const ManageItems = () => {
   async function increment(sport,id) {
     try {
         console.log(id);
-      const res = await axios.patch(`https://sports-ims.onrender.com/increment-quantity/${sport}/${id}`, {}, { withCredentials: true });
+      const res = await axios.patch(`https://sports-ims.onrender.com/increment-quantity/${sport}/${id}`, {});
       console.log(res.data); // Check the response
       setTemp(temp+1);
     } catch (err) {
@@ -30,7 +30,7 @@ const ManageItems = () => {
   async function decrement(sport,id) {
     try {
         console.log(id);
-      const res = await axios.patch(`https://sports-ims.onrender.com/decrement-quantity/${sport}/${id}`, {}, { withCredentials: true });
+      const res = await axios.patch(`https://sports-ims.onrender.com/decrement-quantity/${sport}/${id}`, {});
       console.log(res.data); // Check the response
       setTemp(temp-1);
     } catch (err) {
