@@ -7,9 +7,13 @@ import router from "./Routes/routes.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
+const corsOptions = {
+  origin: 'https://sports-ims.vercel.app/',
+  credentials: true, // enable set cookie
+};
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(cookieParser()); 
 
 const databaseName = "logindetails"; 
