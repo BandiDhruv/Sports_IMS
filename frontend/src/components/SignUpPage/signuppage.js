@@ -33,7 +33,7 @@ function Signup() {
     }
 
     try {
-      const response = await axios.post("https://sports-ims.onrender.com/signup", {
+      const response = await axios.post("https://sports-ims.onrender.com/signup",{credentials:'include'}, {
         name,
         email,
         password,

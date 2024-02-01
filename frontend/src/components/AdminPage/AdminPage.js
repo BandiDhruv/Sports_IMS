@@ -96,7 +96,7 @@ const AdminPage = () => {
   async function sendEmail(prop){
     try{
       const sEmail=localStorage.getItem("userEmail");
-      const res=await axios.post("https://sports-ims.onrender.com/send-email",{
+      const res=await axios.post("https://sports-ims.onrender.com/send-email",{credentials:'include'},{
       senderEmail:sEmail,
       recieverEmail:prop.email,
       itemName:prop.itemName,
@@ -117,7 +117,7 @@ const AdminPage = () => {
     try {
       const { sportName, ...itemDetails } = newSport;
       const response = await axios.post(
-        `https://sports-ims.onrender.com/add-item/${sportName}`,
+        `https://sports-ims.onrender.com/add-item/${sportName}`,{credentials:'include'},
         itemDetails
       );
 

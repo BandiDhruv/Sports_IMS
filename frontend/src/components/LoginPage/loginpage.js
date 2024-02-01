@@ -37,7 +37,7 @@ function Login({ setAuth }) {
       const response = await axios.post("https://sports-ims.onrender.com/", {
         email,
         password,
-      }/*, { withCredentials: true }*/);
+      },{credentials:'include'}/*, { withCredentials: true }*/);
 
       if (response.data.message === "exist") {
         const ls=response.data.data;

@@ -45,7 +45,7 @@ const AnotherComponent = () => {
 
       await axios
         .post(
-          "https://sports-ims.onrender.com/reserve",
+          "https://sports-ims.onrender.com/reserve",{credentials:'include'},
           {
             sportName: sport,
             userEmail: userEmail,
