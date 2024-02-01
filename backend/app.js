@@ -12,11 +12,14 @@ import session from "express-session";
 const app = express();
 const corsOptions = {
   origin: 'https://sports-ims.vercel.app',
-  credentials: 'include', // enable set cookie
+  credentials: true, // enable set cookie
+  enablePreflight:true,
+  allowedHeaders:["Content-Type","Authorization","Access-Control-Allow-Origin","Access-Control-Request-Headers"]
 };
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors(corsOptions));
+app.use(cors({}));
+app.options('*',cors(corsOptions));
 app.use(cookieParser()); 
 app.use(session({
   secret:  'dhruv123',
