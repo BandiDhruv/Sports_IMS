@@ -8,7 +8,7 @@ import cookieParser from "cookie-parser";
 
 const app = express();
 const corsOptions = {
-  origin: 'https://sports-ims.vercel.app/',
+  origin: 'https://sports-ims.vercel.app',
   credentials: 'include', // enable set cookie
 };
 app.use(express.json());
