@@ -5,6 +5,9 @@ import SportsInfo from "./data/data.js";
 import mongoose from "mongoose";
 import router from "./Routes/routes.js";
 import cookieParser from "cookie-parser";
+// import expressSession from  "express-session";
+import session from "express-session";
+// const expressSession =require("express-session")
 
 const app = express();
 const corsOptions = {
@@ -15,7 +18,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 app.use(cookieParser()); 
-
+app.use(session({
+  secret:  'dhruv123',
+  resave:false,
+  saveUninitialized: false,
+  cookie:{secure:true, sameSite:"none"}
+}))
 const databaseName = "logindetails"; 
 mongoose.connect(`mongodb+srv://dhruvbandi:dhruvbandi@cluster0.vfq2isd.mongodb.net/${databaseName}`, {
   useNewUrlParser: true,
