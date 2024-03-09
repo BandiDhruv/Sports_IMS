@@ -18,7 +18,7 @@ const corsOptions = {
 };
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 // app.options(cors(corsOptions));
 app.use(cookieParser()); 
 app.use(session({
@@ -28,13 +28,13 @@ app.use(session({
   cookie:{secure:true, sameSite:"none"}
 }))
 
-app.use(function (req, res, next) {
-  //Enabling CORS
-  res.header("Access-Control-Allow-Origin", ["https://sports-ims.vercel.app", "http://localhost:3000"]);
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
-    next();
-  });
+// app.use(function (req, res, next) {
+//   //Enabling CORS
+//   res.header("Access-Control-Allow-Origin", ["https://sports-ims.vercel.app", "http://localhost:3000"]);
+//   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
+//     next();
+//   });
 const databaseName = "logindetails"; 
 mongoose.connect(`mongodb+srv://dhruvbandi:dhruvbandi@cluster0.vfq2isd.mongodb.net/${databaseName}`, {
   useNewUrlParser: true,
