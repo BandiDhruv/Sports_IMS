@@ -66,7 +66,7 @@ const AnotherComponent = () => {
       toast.error("Error during reservation");
     }
   }
-  console.log(filteredData.Inventory);
+  console.log(filteredData?.Inventory);
   useEffect(() => {
     getDetails();
     getStatus();
