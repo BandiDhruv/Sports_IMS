@@ -14,7 +14,7 @@ const AnotherComponent = () => {
   const [statusData, setStatusData] = useState([]);
   async function getDetails() {
     await axios
-      .get("https://sports-ims.onrender.com/InventoryDetails")
+      .get("https://sports-ims.onrender.com/InventoryDetails",{withCredentials: true})
       .then((resp) => {
         setFetchData(resp.data);
       })
@@ -25,7 +25,7 @@ const AnotherComponent = () => {
   async function getStatus() {
     const userEmail = localStorage.getItem("userEmail");
     await axios
-      .get(`https://sports-ims.onrender.com/get-status/${userEmail}`)
+      .get(`https://sports-ims.onrender.com/get-status/${userEmail}`,{withCredentials: true})
       .then((resp) => {
         setStatusData(resp.data.details);
       })
