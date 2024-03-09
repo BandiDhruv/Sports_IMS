@@ -24,7 +24,7 @@ const AdminPage = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://sports-ims.onrender.com/request-details",
+        "https://sports-ims.onrender.com/request-details",{withCredentials: true}
       );
 
       if (response.status === 200) {
@@ -64,7 +64,7 @@ const AdminPage = () => {
   const handleStatusChange = async (email,item,id, newStatus) => {
     try {
       const response = await axios.patch(
-        `https://sports-ims.onrender.com/update-status/${id}`,
+        `https://sports-ims.onrender.com/update-status/${id}`,{withCredentials: true},
         { status: newStatus },
 
       );
@@ -138,7 +138,7 @@ const AdminPage = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get("https://sports-ims.onrender.com/logout");
+      const response = await axios.get("https://sports-ims.onrender.com/logout",{withCredentials: true});
       localStorage.clear();
       if (response.status === 200) {
         toast.success("successfull logout");
@@ -153,7 +153,7 @@ const AdminPage = () => {
 
   async function getDetails() {
     try {
-      const response = await axios.get("https://sports-ims.onrender.com/InventoryData");
+      const response = await axios.get("https://sports-ims.onrender.com/InventoryData",{withCredentials: true});
       setData(response.data);
     } catch (err) {
       console.error("Error fetching data", err);
