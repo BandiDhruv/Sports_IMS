@@ -21,7 +21,7 @@ const AnotherComponent = () => {
   async function getDetails() {
     setLoading(true)
     await axios
-      .get(`${process.env.REACT_APP_BACKEND_IP}InventoryDetails`,{withCredentials: true})
+      .get("https://sports-ims.onrender.com/InventoryDetails",{withCredentials: true})
       .then((resp) => {
         setFetchData(resp.data);
         const modifiedData = Array.isArray(resp.data)
@@ -41,7 +41,7 @@ const AnotherComponent = () => {
   async function getStatus() {
     const userEmail = localStorage.getItem("userEmail");
     await axios
-      .get(`${process.env.REACT_APP_BACKEND_IP}get-status/${userEmail}`,{withCredentials: true})
+      .get(`https://sports-ims.onrender.com/get-status/${userEmail}`,{withCredentials: true})
       .then((resp) => {
         setStatusData(resp.data.details);
       })
@@ -61,7 +61,7 @@ const AnotherComponent = () => {
 
       await axios
         .post(
-          `${process.env.REACT_APP_BACKEND_IP}reserve`,
+          "https://sports-ims.onrender.com/reserve",
           {
             sportName: sport,
             userEmail: userEmail,
@@ -207,4 +207,3 @@ const AnotherComponent = () => {
 };
 
 export default AnotherComponent;
-
