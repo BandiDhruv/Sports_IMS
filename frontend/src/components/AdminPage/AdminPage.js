@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
+import useAxios from "../../hooks/useAxios";
 import { useNavigate } from "react-router-dom";
 import Button  from "../Home/Button";
 import "./AdminPage.css";
@@ -8,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 const AdminPage = () => {
+  const axios=useAxios()
   const [requestData, setRequestData] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [newSport, setNewSport] = useState({
@@ -139,7 +141,7 @@ const AdminPage = () => {
   const handleLogout = async () => {
     try {
       const response = await axios.get("https://sports-ims.onrender.com/logout",{withCredentials: true});
-      localStorage.clear();
+      window.localStorage.clear();
       if (response.status === 200) {
         toast.success("successfull logout");
         navigate("/");

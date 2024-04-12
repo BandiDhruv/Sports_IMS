@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
+import useAxios from "../../hooks/useAxios";
 import { useNavigate, Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,6 +12,7 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
+  const axios=useAxios()
 
   async function submit(e) {
     e.preventDefault();
@@ -33,11 +35,12 @@ function Signup() {
     }
 
     try {
-      const response = await axios.post("https://sports-ims.onrender.com/signup",{withCredentials: true}, {
-        name,
-        email,
-        password,
-      });
+      const response = await axios.post("https://sports-ims.onrender.com/signup", {
+       name: name,
+       email: email,
+       password: password,
+      },{withCredentials:true}
+      );
 
       if (response.data.message === "exist") {
         toast.error("User already exists");

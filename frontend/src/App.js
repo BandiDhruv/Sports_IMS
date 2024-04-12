@@ -7,6 +7,7 @@ import Developers from "./components/Developers/developers";
 import AnotherComponent from "./components/AnotherComponent/AnotherComponent";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+// import useAxios from './hooks/useAxios';
 import Error from '../src/components/ErrorPage/Error'
 import AdminPage from './components/AdminPage/AdminPage';
 import ManageItems from './components/AdminPage/ManageItems';
@@ -16,7 +17,7 @@ import { useCallback } from 'react';
 
 function App() {
   const [auth, setAuth] = useState(localStorage.getItem("auth")?true:false);
-
+  // const axios=useAxios()
   const authF = useCallback(async () => {
     try {
       const res = await axios.get("https://sports-ims.onrender.com/api",{withCredentials: true});

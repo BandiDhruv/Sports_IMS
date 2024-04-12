@@ -1,5 +1,5 @@
 import "./developers.css";
-import img from "./free-images.avif";
+// import img from "./free-images.avif";
 import Navbar from "../Navbar/navbar";
 const Developers = () => {
   return (

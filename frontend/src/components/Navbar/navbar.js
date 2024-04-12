@@ -2,15 +2,16 @@ import React from 'react';
 import "./navbar.css";
 import { Link ,useNavigate} from 'react-router-dom';
 import Button from './button';
-import axios from 'axios';
+// import axios from 'axios';
+import useAxios from '../../hooks/useAxios';
 import { toast , ToastContainer } from 'react-toastify';
 const Navbar = () => {
-    const navigate = useNavigate();
-
+  const navigate = useNavigate();
+  const axios=useAxios();
     const handleLogout = async () => {
         try {
           const response = await axios.get('https://sports-ims.onrender.com/logout', { withCredentials: true });
-          localStorage.clear();
+          window.localStorage.clear();
           if (response.status === 200) {
             toast.success("successfull logout");
             navigate('/');
@@ -28,13 +29,13 @@ const Navbar = () => {
             </div>
             <div className="nav2">
                 <Link to="/home" className="homebutton">
-                    <Button text="home"/>
+                    <Button text="Home"/>
                 </Link>
                 <Link to="/Developers" className="one" >
-                    <Button text="Meet the Developers"/>
+                    <Button text="Meet The Developers"/>
                 </Link>
                 <div onClick={handleLogout}>
-                    <Button text="logout" />
+                    <Button text="Logout" />
                 </div>
             </div>
 
