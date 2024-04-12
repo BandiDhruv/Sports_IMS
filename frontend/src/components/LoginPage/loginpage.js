@@ -36,7 +36,7 @@ function Login({ setAuth }) {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_IP}/`, {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_IP}`, {
         email,
         password,
       },{withCredentials: true}/*, { withCredentials: true }*/);

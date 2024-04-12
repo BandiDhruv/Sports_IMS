@@ -10,7 +10,7 @@ const ManageItems = () => {
   const axios=useAxios()
   async function getDetails() {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_IP}/InventoryData`,{withCredentials: true});
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_IP}InventoryData`,{withCredentials: true});
       setData(response.data);
     } catch (err) {
       console.error("Error fetching data", err);
@@ -21,7 +21,7 @@ const ManageItems = () => {
   async function increment(sport,id) {
     try {
         console.log(id);
-      const res = await axios.patch(`${process.env.REACT_APP_BACKEND_IP}/increment-quantity/${sport}/${id}`, {withCredentials: true});
+      const res = await axios.patch(`${process.env.REACT_APP_BACKEND_IP}increment-quantity/${sport}/${id}`, {withCredentials: true});
       console.log(res.data); // Check the response
       setTemp(temp+1);
     } catch (err) {
@@ -31,7 +31,7 @@ const ManageItems = () => {
   async function decrement(sport,id) {
     try {
         console.log(id);
-      const res = await axios.patch(`${process.env.REACT_APP_BACKEND_IP}/decrement-quantity/${sport}/${id}`, {withCredentials: true});
+      const res = await axios.patch(`${process.env.REACT_APP_BACKEND_IP}decrement-quantity/${sport}/${id}`, {withCredentials: true});
       console.log(res.data); // Check the response
       setTemp(temp-1);
     } catch (err) {

@@ -10,7 +10,7 @@ const Navbar = () => {
   const axios=useAxios();
     const handleLogout = async () => {
         try {
-          const response = await axios.get(`${process.env.REACT_APP_BACKEND_IP}/logout`, { withCredentials: true });
+          const response = await axios.get(`${process.env.REACT_APP_BACKEND_IP}logout`, { withCredentials: true });
           window.localStorage.clear();
           if (response.status === 200) {
             toast.success("successfull logout");
