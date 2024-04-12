@@ -98,12 +98,12 @@ const AdminPage = () => {
   async function sendEmail(prop){
     try{
       const sEmail=localStorage.getItem("userEmail");
-      const res=await axios.post("https://sports-ims.onrender.com/send-email",{withCredentials: true},{
+      const res=await axios.post("https://sports-ims.onrender.com/send-email",{
       senderEmail:sEmail,
       recieverEmail:prop.email,
       itemName:prop.itemName,
       status:prop.status
-    })
+    },{withCredentials: true})
     if(res.status===201){
       console.log("mail sent successfully");
     }
