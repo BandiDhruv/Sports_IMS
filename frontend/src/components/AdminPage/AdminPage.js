@@ -26,7 +26,7 @@ const AdminPage = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `${process.env.BACKEND_IP}/request-details`,{withCredentials: true}
+        `${process.env.REACT_APP_BACKEND_IP}request-details`,{withCredentials: true}
       );
 
       if (response.status === 200) {
@@ -66,7 +66,7 @@ const AdminPage = () => {
   const handleStatusChange = async (email,item,id, newStatus) => {
     try {
       const response = await axios.patch(
-        `${process.env.BACKEND_IP}/update-status/${id}`,{withCredentials: true},
+        `${process.env.REACT_APP_BACKEND_IP}update-status/${id}`,{withCredentials: true},
         { status: newStatus },
 
       );
@@ -98,7 +98,7 @@ const AdminPage = () => {
   async function sendEmail(prop){
     try{
       const sEmail=localStorage.getItem("userEmail");
-      const res=await axios.post(`${process.env.BACKEND_IP}/send-email`,{
+      const res=await axios.post(`${process.env.REACT_APP_BACKEND_IP}send-email`,{
       senderEmail:sEmail,
       recieverEmail:prop.email,
       itemName:prop.itemName,
@@ -119,7 +119,7 @@ const AdminPage = () => {
     try {
       const { sportName, ...itemDetails } = newSport;
       const response = await axios.post(
-        `${sportName}`,{withCredentials: true},
+        `${process.env.REACT_APP_BACKEND_IP}add-item/${sportName}`,{withCredentials: true},
         itemDetails
       );
 
@@ -140,7 +140,7 @@ const AdminPage = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get(`${process.env.BACKEND_IP}/logout`,{withCredentials: true});
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_IP}logout`,{withCredentials: true});
       window.localStorage.clear();
       if (response.status === 200) {
         toast.success("successfull logout");
@@ -155,7 +155,7 @@ const AdminPage = () => {
 
   async function getDetails() {
     try {
-      const response = await axios.get(`${process.env.BACKEND_IP}/InventoryData`,{withCredentials: true});
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_IP}InventoryData`,{withCredentials: true});
       setData(response.data);
     } catch (err) {
       console.error("Error fetching data", err);
@@ -269,3 +269,4 @@ const AdminPage = () => {
 };
 
 export default AdminPage;
+

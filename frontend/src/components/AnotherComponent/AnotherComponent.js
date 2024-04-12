@@ -4,28 +4,44 @@ import { useParams } from "react-router-dom";
 import Navbar from "../Navbar/navbar";
 import green from "../../assetss/greencolor.jpg";
 import red from "../../assetss/redcolor.png";
-import axios from "axios";
+// import axios from "axios";
+import useAxios from "../../hooks/useAxios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const AnotherComponent = () => {
   const [fetchData, setFetchData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const { title } = useParams();
   const [statusData, setStatusData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const axios=useAxios();
+
   async function getDetails() {
+    setLoading(true)
     await axios
-      .get(`${process.env.BACKEND_IP}/InventoryDetails`,{withCredentials: true})
+      .get(`${process.env.REACT_APP_BACKEND_IP}InventoryDetails`,{withCredentials: true})
       .then((resp) => {
         setFetchData(resp.data);
+        const modifiedData = Array.isArray(resp.data)
+    ? resp.data.filter((item) => item.sportName === title)
+    : [];
+ console.log(modifiedData)
+ setFilteredData(modifiedData)
       })
       .catch((err) => {
         console.error("error fetching data", err);
-      });
+      })
+      .finally(()=>{
+        setLoading(false)
+      }
+      )
   }
   async function getStatus() {
     const userEmail = localStorage.getItem("userEmail");
     await axios
-      .get(`${process.env.BACKEND_IP}/get-status/${userEmail}`,{withCredentials: true})
+      .get(`${process.env.REACT_APP_BACKEND_IP}get-status/${userEmail}`,{withCredentials: true})
       .then((resp) => {
         setStatusData(resp.data.details);
       })
@@ -45,7 +61,7 @@ const AnotherComponent = () => {
 
       await axios
         .post(
-          `${process.env.BACKEND_IP}/reserve`,{withCredentials: true},
+          `${process.env.REACT_APP_BACKEND_IP}reserve`,
           {
             sportName: sport,
             userEmail: userEmail,
@@ -54,11 +70,13 @@ const AnotherComponent = () => {
             imageLink: equipment.imageLink,
             itemName: equipment.nameOfSportsEquipment,
             itemQuantity:equipment.quantityOfSportsEquipment,
-          }
+          },{withCredentials: true}
         )
         .then((res) => {
           if (res.data.message === "success") {
             toast.success("Requested successfully");
+            getDetails();
+            getStatus();
           }
         });
     } catch (error) {
@@ -66,23 +84,34 @@ const AnotherComponent = () => {
       toast.error("Error during reservation");
     }
   }
-  console.log(filteredData);
+  // console.log(filteredData);
   useEffect(() => {
     getDetails();
     getStatus();
-  }, [getStatus]);
+  }, []);
 
-  // console.log(fetchData)
-  const filteredData = Array.isArray(fetchData)
-    ? fetchData.filter((item) => item.sportName === title)
-    : [];
-
+ 
+//   const filteredData = Array.isArray(fetchData)
+//     ? fetchData.filter((item) => item.sportName === title)
+//     : [];
+//  console.log(filteredData)
   return (
     <div className="hello">
       <div id="cards-navbar">
         <Navbar />
       </div>
-      {filteredData.map((item) => (
+
+      { loading? <div className="loader-container">
+      <ClipLoader
+        className="loadingicon"
+        color="rgb(22, 40, 80)"
+        loading={loading}
+        size={300}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    </div>:
+      filteredData.map((item) => (
         <div className="cards-main" key={item._id}>
           <h1 className="cards-heading">{item.sportName}</h1>
           <div className="cards-container">
@@ -92,7 +121,8 @@ const AnotherComponent = () => {
                   <img
                     className="sportsCards-image"
                     src={equipments.imageLink}
-                    alt="not available"
+                    // referrerPolicy="no-referrer"
+                    alt="img"
                   />
                 </div>
                 <div className="cards-name">
@@ -177,3 +207,4 @@ const AnotherComponent = () => {
 };
 
 export default AnotherComponent;
+

@@ -20,7 +20,7 @@ function App() {
   // const axios=useAxios()
   const authF = useCallback(async () => {
     try {
-      const res = await axios.get(`${process.env.BACKEND_IP}/api`,{withCredentials: true});
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_IP}api`,{withCredentials: true});
       if (res.data.message === "exist") {
         setAuth(true);
       }
