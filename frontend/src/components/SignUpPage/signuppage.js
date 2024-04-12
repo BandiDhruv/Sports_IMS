@@ -35,7 +35,7 @@ function Signup() {
     }
 
     try {
-      const response = await axios.post("https://sports-ims.onrender.com/signup", {
+      const response = await axios.post(`${process.env.BACKEND_IP}/signup`, {
        name: name,
        email: email,
        password: password,

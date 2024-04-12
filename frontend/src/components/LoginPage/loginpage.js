@@ -36,7 +36,7 @@ function Login({ setAuth }) {
     e.preventDefault();
 
     try {
-      const response = await axios.post("https://sports-ims.onrender.com/", {
+      const response = await axios.post(`${process.env.BACKEND_IP}/`, {
         email,
         password,
       },{withCredentials: true}/*, { withCredentials: true }*/);
