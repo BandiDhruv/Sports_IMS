@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./loginpage.css";
+import useAxios from "../../hooks/useAxios";
 
 function Login({ setAuth }) {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const axios=useAxios()
   const checkElapsedTime = () => {
     const loginTime = localStorage.getItem('loginTime');
     if (loginTime) {
@@ -25,6 +26,7 @@ function Login({ setAuth }) {
   };
   const logoutUser = () => {
     localStorage.removeItem('loginTime');
+    window.localStorage.clear();
   };
   const startLogoutTimer = () => {
     setInterval(checkElapsedTime, 60000*15); 
@@ -46,6 +48,8 @@ function Login({ setAuth }) {
         localStorage.setItem("auth",true)
         localStorage.setItem("userEmail",ls.email)
         localStorage.setItem("userRole",ls.role)
+        localStorage.setItem("authtoken",response.data.token)
+
         const loginTime = new Date().getTime();
         localStorage.setItem("loginTime",loginTime);
         setAuth(true);
@@ -54,17 +58,17 @@ function Login({ setAuth }) {
 
         console.log(role);
           if(role==="user"){
-            history("/home");
+            navigate("/home");
             toast.success("succesfull signed in");
           }
           else if(role==="admin"){
-            history("/admin");
+            navigate("/admin");
             toast.success("succesfull signed in");
           }
           else
           {
             toast.error("Oops an error occured");
-            history("*")
+            navigate("*")
           }
       } else if (response.data.message === "notexist") {
         toast.error("User not registered");

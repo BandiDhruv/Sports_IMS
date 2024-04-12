@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import useAxios from '../../hooks/useAxios';
 import './ManageItem.css';
 import { IoIosArrowDropdownCircle,IoIosArrowDropupCircle } from "react-icons/io";
 
 
 const ManageItems = () => {
   const [data, setData] = useState([]);
-
+  const axios=useAxios()
   async function getDetails() {
     try {
       const response = await axios.get("https://sports-ims.onrender.com/InventoryData",{withCredentials: true});
