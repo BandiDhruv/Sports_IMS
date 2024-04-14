@@ -79,7 +79,37 @@ const getSportsData = {
       console.error(error);
       res.status(500).json({ error: 'Internal server error' });
     }
-  }
+  },
+  deleteSportItem: async (req, res) => {
+    const { sportName, itemId } = req.params;
+
+    try {
+        const query = {
+            sportName: sportName,
+            "Inventory._id": itemId // Match the specific item ID within the Inventory array
+        };
+        console.log(query)
+        
+        const updateResult = await SportsDetails.updateOne(query, { $pull: { Inventory: { _id: itemId } } });
+
+        if (updateResult.nModified === 0) {
+            return res.status(404).json({ message: 'Item not found in the inventory' });
+        }
+
+        const deleteResult = await InventoryModel.deleteOne({ _id: itemId });
+
+        if (deleteResult.deletedCount === 0) {
+            console.error('Error deleting item from the database: Item not found');
+        }
+
+        res.status(200).json({ message: 'Inventory item deleted successfully' });
+    } catch (err) {
+        console.error('Error deleting inventory item:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
+
 };
 
 export { getSportsData }; 

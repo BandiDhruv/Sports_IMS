@@ -54,4 +54,7 @@ router.get("/logout",authController.logoutUser);
 // route for sending email
 router.post("/send-email",getRequestData.sendMail)
 
+//routing for delete
+router.patch("/delete-sportItem/:sportName/:itemId",getSportsData.deleteSportItem)
+
 export default router;
