@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import useAxios from '../../hooks/useAxios';
 import './ManageItem.css';
 import { IoIosArrowDropdownCircle,IoIosArrowDropupCircle } from "react-icons/io";
-
+import { IoTrashBinSharp } from "react-icons/io5";
 
 const ManageItems = () => {
   const [data, setData] = useState([]);
@@ -42,8 +42,15 @@ const ManageItems = () => {
     try {
       console.log(sportId);
       const res=await axios.patch(`https://sports-ims.onrender.com/delete-sportItem/${sport}/${sportId}`, { withCredentials: true });
-      // After successful deletion, fetch updated data
-      // getDetails();
+      console.log(res.data);
+    } catch (err) {
+      console.error("Error deleting sport", err);
+    }
+  }
+  async function deleteSport(sportId) {
+    try {
+      console.log(sportId);
+      const res=await axios.patch(`http://localhost:8000/delete-sport/${sportId}`, { withCredentials: true });
       console.log(res.data);
     } catch (err) {
       console.log("hi");
@@ -77,9 +84,14 @@ const ManageItems = () => {
       <div className='manage-sport'>
       {data.map((sport, index) => (
         <div key={sport._id} className="sport-details">
+        
           <div className="sport-name" onClick={() => toggleDetails(index)}>
-            {sport.sportName} <span className='toggle-icon'>{sport.showDetails ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle /> }</span>
+            {sport.sportName} 
+            <span className='toggle-icon'>{sport.showDetails ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle /> }</span>
+           
           </div>
+         
+          <div> <IoTrashBinSharp size={30} className='abc1' onClick={() => deleteSport(sport._id)}/></div>
           {sport.showDetails && (
             <div className="sport-inventory">
               {sport.Inventory.map((item, i) => (
