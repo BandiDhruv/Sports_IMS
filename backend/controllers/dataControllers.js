@@ -109,7 +109,7 @@ const getSportsData = {
         console.error('Error deleting inventory item:', err);
         res.status(500).json({ error: 'Internal server error' });
     }
-}
+},
 
 
   addSport:async(req,res)=>{
