@@ -12,6 +12,9 @@ router.get("/InventoryDetails", authenticateToken.checkToken, getSportsData.getI
 // route form for adding a sport item
 router.post("/add-item/:sportName", getSportsData.addItem);
 
+// route form for adding a sport 
+router.post("/add-sport/", getSportsData.addSport);
+
 // route for getting data for managing-items (admin only)
 router.get("/InventoryData",getSportsData.getInventoryData)
 

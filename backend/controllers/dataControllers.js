@@ -35,11 +35,12 @@ const getSportsData = {
       if (!sport) {
         return res.status(404).json({ message: 'Sport not found' });
       }
+      console.log(quantityOfSportsEquipment);
       const newItem = {
         nameOfSportsEquipment:nameOfSportsEquipment,
-        quantityOfSportsEquipmen:quantityOfSportsEquipment,
+        quantityOfSportsEquipment:quantityOfSportsEquipment,
         isDamaged:false,
-        imageLi:imageLink,
+        imageLink:imageLink,
       };
       sport.Inventory.push(newItem);
       await sport.save();
@@ -80,6 +81,7 @@ const getSportsData = {
       res.status(500).json({ error: 'Internal server error' });
     }
   },
+ 
   deleteSportItem: async (req, res) => {
     const { sportName, itemId } = req.params;
 
@@ -109,6 +111,23 @@ const getSportsData = {
     }
 }
 
+
+  addSport:async(req,res)=>{
+    const sportData=req.body;
+
+    console.log(sportData);
+    try{
+      const query={
+        sportName:await sportData.sportName,
+        Inventory:await sportData.inventory,
+      };
+      await SportsDetails.insertMany(query);
+      res.status(201).json({ message: 'success' });
+    }catch(e){
+      console.error(e);
+      res.status(500).json({error:'Internal server error'});
+    }
+  }
 
 };
 
