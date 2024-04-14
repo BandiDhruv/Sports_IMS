@@ -176,6 +176,8 @@ const AdminPage = () => {
   }
   const [sportData, setSportData] = useState({
     sportName: "",
+    description: "No Discription",
+    sportImage:"https://i.postimg.cc/wMrwsG2R/loremipsum.webp",
     inventory: [],
   });
   
@@ -217,6 +219,8 @@ const AdminPage = () => {
       if(res.status===201){
         setSportData({
           sportName:"",
+          description:"No discription",
+          sportImage:"https://i.postimg.cc/wMrwsG2R/loremipsum.webp",
           inventory:[],
         });
         setShowAddSportForm(false);
@@ -344,6 +348,20 @@ const AdminPage = () => {
         value={sportData.sportName}
         onChange={handleSportInputChange}
         required
+      />
+      <input
+        type="text"
+        name="description"
+        placeholder="description"
+        value={sportData.description}
+        onChange={handleSportInputChange}
+      />
+      <input
+        type="text"
+        name="sportImage"
+        placeholder="Sport Image"
+        value={sportData.sportImage}
+        onChange={handleSportInputChange}
       />
       {/* Display equipment inputs based on inventory */}
       {sportData.inventory.map((equipment, index) => (

@@ -50,7 +50,7 @@ const ManageItems = () => {
   async function deleteSport(sportId) {
     try {
       console.log(sportId);
-      const res=await axios.patch(`http://localhost:8000/delete-sport/${sportId}`, { withCredentials: true });
+      const res=await axios.patch(`https://sports-ims.onrender.com/delete-sport/${sportId}`, { withCredentials: true });
       console.log(res.data);
     } catch (err) {
       console.log("hi");
