@@ -32,7 +32,7 @@ const Developers = () => {
               <div className="developer-box-line"></div>
               <h3 className="developer-box-heading">DIVYANSHI AGARWAL</h3>
               <span>21ucs074@lnmiit.ac.in</span>
-              <p>Frontend Developer</p>
+              <p>Developer</p>
             </div>
           </div>
 
