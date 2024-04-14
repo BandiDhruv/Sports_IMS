@@ -88,7 +88,7 @@ const getSportsData = {
     try {
         const query = {
             sportName: sportName,
-            "Inventory._id": itemId // Match the specific item ID within the Inventory array
+            "Inventory._id": itemId 
         };
         console.log(query)
         
@@ -110,6 +110,24 @@ const getSportsData = {
         res.status(500).json({ error: 'Internal server error' });
     }
 },
+
+deleteSport: async (req, res) => {
+  const { sportId } = req.params;
+
+  try {
+      const deleteResult = await SportsDetails.deleteOne({ _id: sportId });
+
+      if (deleteResult.deletedCount === 0) {
+          return res.status(404).json({ message: 'Sport not found' });
+      }
+
+      res.status(200).json({ message: 'Sport deleted successfully' });
+  } catch (err) {
+      console.error('Error deleting sport:', err);
+      res.status(500).json({ error: 'Internal server error' });
+  }
+},
+
 
 
   addSport:async(req,res)=>{
