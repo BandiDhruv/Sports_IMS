@@ -14,7 +14,9 @@ const AdminPage = () => {
   const [showForm, setShowForm] = useState(false);
   const [newSport, setNewSport] = useState({
     sportName: "",
-    inventory: [],
+    nameOfSportsEquipment:"",
+    quantityOfSportsEquipment:"",
+    imageLink:"",
   });
   const [data, setData] = useState({});
   useEffect(() => {
@@ -62,7 +64,7 @@ const AdminPage = () => {
       console.error("Error fetching data:", error);
     }
   };
-  console.log(requestData);
+  // console.log(requestData);
   const handleStatusChange = async (email,item,id, newStatus) => {
     try {
       const response = await axios.patch(
@@ -118,9 +120,10 @@ const AdminPage = () => {
     e.preventDefault();
     try {
       const { sportName, ...itemDetails } = newSport;
+      console.log(newSport);
       const response = await axios.post(
-        `https://sports-ims.onrender.com/add-item/${sportName}`,{withCredentials: true},
-        itemDetails
+        `https://sports-ims.onrender.com/add-item/${sportName}`,itemDetails,{withCredentials: true},
+
       );
 
       if (response.status === 201) {
@@ -129,6 +132,7 @@ const AdminPage = () => {
           inventory: [],
         });
         setShowForm(false);
+        toast.success("Successfully added new sport!");
         fetchData();
       } else {
         console.error("Failed to add new item:", response.statusText);
@@ -165,7 +169,67 @@ const AdminPage = () => {
     ? Array.from(new Set(data.map((item) => item.sportName)))
     : [];
 
-  console.log(requestData);
+  // console.log(requestData);
+  const [showAddSportForm,setShowAddSportForm]=useState(false);
+  const toggleSportForm = () =>{
+    setShowAddSportForm( (prev)=> !prev );
+  }
+  const [sportData, setSportData] = useState({
+    sportName: "",
+    inventory: [],
+  });
+  
+  const handleSportInputChange = (e) => {
+    setSportData({ ...sportData, [e.target.name]: e.target.value });
+  };
+  
+  const handleEquipmentInputChange = (e, index) => {
+    const { name, value } = e.target;
+    const updatedInventory = [...sportData.inventory];
+    updatedInventory[index] = { ...updatedInventory[index], [name]: value };
+    setSportData(prevState => ({
+      ...prevState,
+      inventory: updatedInventory,
+    }));
+  };
+  
+  
+  
+  const handleAddEquipment = () => {
+    setSportData({
+      ...sportData,
+      inventory: [...sportData.inventory, { nameOfSportsEquipment: "", quantityOfSportsEquipment: "", imageLink: "" }],
+    });
+  };
+  
+  const handleRemoveEquipment = (index) => {
+    const updatedInventory = [...sportData.inventory];
+    updatedInventory.splice(index, 1);
+    setSportData({ ...sportData, inventory: updatedInventory });
+  };
+  
+  const handleSportSubmit =async(e)=>{
+    e.preventDefault();
+    console.log(sportData)
+    try{
+
+      const res=await axios.post("https://sports-ims.onrender.com/add-sport",sportData,{withCredentials:true})
+      if(res.status===201){
+        setSportData({
+          sportName:"",
+          inventory:[],
+        });
+        setShowAddSportForm(false);
+        fetchData();
+        toast.success("Successfully added new sport!");
+      }else{
+        console.err("Failed to add new Sport",res.statusText);
+      }
+    }catch(E){
+      console.error("Error adding new Sport",E);
+    }
+  }
+  // console.log(sportData);
   return (
     <div className="admin-container">
       <div className="admin-navbar">
@@ -174,6 +238,9 @@ const AdminPage = () => {
         </a>
         <div onClick={toggleShowForm}>
           <Button text="Add New Item " />
+        </div>
+        <div onClick={toggleSportForm}>
+          <Button text="Add New Sport" />
         </div>
         <div onClick={handleLogout}>
           <Button text="Logout" />
@@ -206,7 +273,7 @@ const AdminPage = () => {
                 type="text"
                 name="nameOfSportsEquipment"
                 placeholder="Equipment Name*"
-                value={newSport.inventory.nameOfSportsEquipment}
+                value={newSport.nameOfSportsEquipment}
                 onChange={handleInputChange}
                 required
               />
@@ -214,7 +281,7 @@ const AdminPage = () => {
                 type="number"
                 name="quantityOfSportsEquipment"
                 placeholder="Quantity*"
-                value={newSport.inventory.quantityOfSportsEquipment}
+                value={newSport.quantityOfSportsEquipment}
                 onChange={handleInputChange}
                 required
               />
@@ -222,7 +289,7 @@ const AdminPage = () => {
                 type="text"
                 name="imageLink"
                 placeholder="Image Link*"
-                value={newSport.inventory.imageLink}
+                value={newSport.imageLink}
                 onChange={handleInputChange}
               />
               <button className="admin-button" type="submit">
@@ -263,6 +330,66 @@ const AdminPage = () => {
           ))}
         </div>
       )}
+      {showAddSportForm && (
+        <div className="parent-form-div">
+  <div className="form-div-admin">
+    <form className="add-sport-form" onSubmit={handleSportSubmit}>
+      <button className="close-btn" onClick={toggleSportForm}>
+        X
+      </button>
+      <input
+        type="text"
+        name="sportName"
+        placeholder="Sport Name*"
+        value={sportData.sportName}
+        onChange={handleSportInputChange}
+        required
+      />
+      {/* Display equipment inputs based on inventory */}
+      {sportData.inventory.map((equipment, index) => (
+        <div key={index}>
+          <input
+            type="text"
+            name="nameOfSportsEquipment"
+            placeholder="Equipment Name*"
+            value={equipment.nameOfSportsEquipment}
+            onChange={(e) => handleEquipmentInputChange(e, index)}
+            required
+          />
+          <input
+            type="number"
+            name="quantityOfSportsEquipment"
+            placeholder="Quantity*"
+            value={equipment.quantityOfSportsEquipment}
+            onChange={(e) => handleEquipmentInputChange(e, index)}
+            required
+          />
+          <input
+            type="text"
+            name="imageLink"
+            placeholder="Image Link*"
+            value={equipment.imageLink}
+            onChange={(e) => handleEquipmentInputChange(e, index)}
+          />
+          <button className="admin-button" onClick={() => handleRemoveEquipment(index)}>
+            Remove
+          </button>
+        </div>
+      ))}
+      <button className="admin-button" type="button" onClick={handleAddEquipment}>
+        Add Equipment
+      </button>
+      {sportData.inventory.length > 0 && 
+        <button className="admin-button" type="submit">
+          Confirm
+        </button>
+      }
+    </form>
+  </div>
+</div>
+
+)}
+
       <ToastContainer />
     </div>
   );

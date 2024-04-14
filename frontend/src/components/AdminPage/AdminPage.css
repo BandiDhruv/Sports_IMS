@@ -27,6 +27,7 @@
     justify-content: center;
     height: 39rem;
     width: 80%;
+    overflow-y: auto;
 }
 
 .form-div-admin{
@@ -34,11 +35,13 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    height: auto;
+    height: 100% ;
     width: 100%;
+    overflow-y: auto;
 }
 
 .add-sport-form {
+    overflow-y: auto;
     position: absolute;
     height: 20rem;
     width: 30rem;
@@ -47,6 +50,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow-y: auto;
     gap: 2rem;
     padding: 2rem;
     border-radius: 8px;
