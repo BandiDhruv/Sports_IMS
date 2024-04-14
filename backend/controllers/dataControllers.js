@@ -137,6 +137,8 @@ deleteSport: async (req, res) => {
     try{
       const query={
         sportName:await sportData.sportName,
+        description:await sportData.description,
+        sportImage:await sportData.image,
         Inventory:await sportData.inventory,
       };
       await SportsDetails.insertMany(query);

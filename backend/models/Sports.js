@@ -5,6 +5,14 @@ const Sports = new mongoose.Schema({
     type: String,
     required:true,
   },
+  description:{
+    type:String,
+    default:"No Discription",
+  },
+  sportImage:{
+    type:String,
+    default:"https://i.postimg.cc/wMrwsG2R/loremipsum.webp",
+  },
   Inventory: [{
     nameOfSportsEquipment: { type: String },
     quantityOfSportsEquipment: { type: Number },
