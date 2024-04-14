@@ -38,6 +38,19 @@ const ManageItems = () => {
       console.error("Error incrementing quantity", err);
     }
   }
+  async function deleteSportItem(sport,sportId) {
+    try {
+      console.log(sportId);
+      const res=await axios.patch(`https://sports-ims.onrender.com/delete-sportItem/${sport}/${sportId}`, { withCredentials: true });
+      // After successful deletion, fetch updated data
+      // getDetails();
+      console.log(res.data);
+    } catch (err) {
+      console.log("hi");
+      console.error("Error deleting sport", err);
+    }
+  }
+
   
 
   useEffect(() => {
@@ -93,6 +106,8 @@ const ManageItems = () => {
                  </div>
                  </div>
                  
+                 <button className='cards-btn' onClick={() => deleteSportItem(sport.sportName,item._id)}>Delete</button>
+                  
                 </div>
               ))}
             </div>
@@ -104,6 +119,7 @@ const ManageItems = () => {
     </div>
   );
 };
+
 
 export default ManageItems;
 
