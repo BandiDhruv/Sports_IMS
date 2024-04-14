@@ -19,6 +19,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .cards-btn
 {
     display: flex;
@@ -43,6 +44,12 @@
     width: 100%;
 }
 
+.abc1{
+    margin-left: 60rem;
+    
+    cursor: pointer;
+   
+}
 .sport-details{
     display: flex;
     flex-direction: column;
