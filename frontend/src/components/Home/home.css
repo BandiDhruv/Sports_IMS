@@ -44,7 +44,7 @@
     width: 100%;
     overflow-y: auto;
     text-align: center;
-    cursor: pointer;
+   
     border-top:  solid rgb(230, 228, 228);
 }
 .left-panel-contents::-webkit-scrollbar {
@@ -69,6 +69,8 @@
 .left-panel-link{
     text-decoration: none;
     color: black;
+    cursor: pointer;
+   
 }
 
 .right

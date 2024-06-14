@@ -13,7 +13,6 @@ const AdminPage = () => {
   const axios = useAxios();
   const [requestData, setRequestData] = useState([]);
   const [showForm, setShowForm] = useState(false);
-
   const [data, setData] = useState({});
   useEffect(() => {
     fetchData();
@@ -76,6 +75,12 @@ const AdminPage = () => {
       } else {
         console.error("Failed to update status:", response.statusText);
       }
+      toast.success(`Request is ${newStatus}!`)
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+
+
       // fetchData();
     } catch (error) {
       console.error("Error updating status:", error);
@@ -140,11 +145,13 @@ const AdminPage = () => {
 
   const toggleSportForm = () => {
     setShowAddSportForm((prev) => !prev);
+    setShowForm(false);
   };
 
   // console.log(sportData);
   async function toggleShowForm() {
     setShowForm(!showForm);
+    setShowAddSportForm(false)
   }
   return (
     <div className="admin-container">
@@ -163,10 +170,21 @@ const AdminPage = () => {
         </div>
       </div>
       {showForm && <AddItem showForm={showForm} setShowForm={setShowForm} />}
-
-      {!showForm && (
+   
+      {!showAddSportForm && !showForm && (
         <div className="admin-items">
-          {requestData.map((item) => (
+          {requestData.length === 0 ? (
+           
+            
+            <div className="no-requests">
+              <h1>No Pending Requests Available!</h1>
+            
+            
+            </div>
+           
+            
+          ) : (
+          requestData.map((item) => (
             <div className="admin-items-inner" key={item._id}>
               <div className="admin-items-inner1">
                 <img className="admin-item-image" src={item.imageLink} alt="" />
@@ -178,14 +196,14 @@ const AdminPage = () => {
                 <p>Available Now: {item.itemQuantity}</p>
               </div>
               <div className="admin-items-inner3">
-                {item.itemQuantity !== 0 && (
+                {item.itemQuantity !==0 && (
                   <button
                     onClick={() =>
                       handleStatusChange(
                         item.userEmail,
                         item.itemName,
                         item._id,
-                        "accepted"
+                        "Accepted"
                       )
                     }
                   >
@@ -198,7 +216,7 @@ const AdminPage = () => {
                       item.userEmail,
                       item.itemName,
                       item._id,
-                      "rejected"
+                      "Rejected"
                     )
                   }
                 >
@@ -207,7 +225,8 @@ const AdminPage = () => {
                 <div />
               </div>
             </div>
-          ))}
+          )))
+                }
         </div>
       )}
       {showAddSportForm && (

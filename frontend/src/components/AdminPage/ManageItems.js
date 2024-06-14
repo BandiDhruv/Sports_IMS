@@ -4,6 +4,7 @@ import useAxios from '../../hooks/useAxios';
 import './ManageItem.css';
 import { IoIosArrowDropdownCircle,IoIosArrowDropupCircle } from "react-icons/io";
 import { IoTrashBinSharp } from "react-icons/io5";
+import {toast} from "react-toastify"
 
 const ManageItems = () => {
   const [data, setData] = useState([]);
@@ -23,6 +24,7 @@ const ManageItems = () => {
         console.log(id);
       const res = await axios.patch(`https://sports-ims.onrender.com/increment-quantity/${sport}/${id}`, {withCredentials: true});
       console.log(res.data); // Check the response
+    
       setTemp(temp+1);
     } catch (err) {
       console.error("Error incrementing quantity", err);
@@ -33,7 +35,10 @@ const ManageItems = () => {
         console.log(id);
       const res = await axios.patch(`https://sports-ims.onrender.com/decrement-quantity/${sport}/${id}`, {withCredentials: true});
       console.log(res.data); // Check the response
+     if(temp-1>0)
       setTemp(temp-1);
+    else 
+      setTemp(temp);
     } catch (err) {
       console.error("Error incrementing quantity", err);
     }
@@ -43,6 +48,12 @@ const ManageItems = () => {
       console.log(sportId);
       const res=await axios.patch(`https://sports-ims.onrender.com/delete-sportItem/${sport}/${sportId}`, { withCredentials: true });
       console.log(res.data);
+       
+      toast.success("Item Deleted Successfully!")
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+
     } catch (err) {
       console.error("Error deleting sport", err);
     }
@@ -52,8 +63,13 @@ const ManageItems = () => {
       console.log(sportId);
       const res=await axios.patch(`https://sports-ims.onrender.com/delete-sport/${sportId}`, { withCredentials: true });
       console.log(res.data);
+     
+      toast.success("Sport Deleted Successfully!")
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } catch (err) {
-      console.log("hi");
+      
       console.error("Error deleting sport", err);
     }
   }
