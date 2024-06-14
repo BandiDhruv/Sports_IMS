@@ -128,6 +128,7 @@ function Home() {
                     <Link
                       className="left-panel-link"
                       to={`/Sports/${item.sportName}`}
+                      
                     >
                       {item.sportName}
                     </Link>

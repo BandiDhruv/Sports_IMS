@@ -118,11 +118,13 @@ const AnotherComponent = () => {
             {item.Inventory.map((equipments) => (
               <div className="cards" key={equipments._id}>
                 <div className="cards-image">
+                  
                   <img
                     className="sportsCards-image"
                     src={equipments.imageLink}
                     // referrerPolicy="no-referrer"
                     alt="img"
+                    onLoad={() => setLoading(false)}
                   />
                 </div>
                 <div className="cards-name">
@@ -170,7 +172,7 @@ const AnotherComponent = () => {
                             key={`pending-${item.itemID}`}
                             className="cards-btn pending-btn"
                           >
-                            Pending
+                            PENDING
                           </button>
                         );
                       } else if (item.status === "accepted") {

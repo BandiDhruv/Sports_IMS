@@ -31,14 +31,14 @@
     border: 1px solid black;
     border-radius: 8px;
     width: 6rem;
-    cursor: pointer;
-    background-color:  #1888ff;
+    /* cursor: pointer; */
+    /* background-color:  #1888ff; */
     height: 2.5rem;
 
 }
-.cards-btn:hover{
-    background-color: #5cabff;;
-}
+/* .cards-btn:hover{
+    background-color: #5cabff;
+} */
 .manage-sport{
     height:90vh;
     width: 100%;

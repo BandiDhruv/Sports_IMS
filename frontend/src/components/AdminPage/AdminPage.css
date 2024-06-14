@@ -50,7 +50,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow-y: auto;
+    overflow-x: hidden;
+    
     gap: 2rem;
     padding: 2rem;
     border-radius: 8px;
@@ -85,6 +86,17 @@
     overflow-y: scroll;
   }
 
+  .remove-form{
+   
+    height: auto;
+    width: 30rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+  }
 .add-sport-form input[type="text"],input[type="number"]{
     width: 90%;
     padding: 0.5rem;
@@ -93,10 +105,17 @@
     font-size: 1rem;
 }
 .add-sport-form .admin-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1rem;
-    width: 7rem;
+    width: 25%;
     height: 2.5rem;
     border-radius: 10px;
+    border: 1px solid black;
+}
+.admin-button:hover{
+    background-color: #5cabff;;
 }
 /*******************************************/
 .admin-items{
@@ -185,6 +204,31 @@
 .admin-items-inner3 button:nth-child(2):hover{
     background-color: dark-red;
 }
+.no-requests{
+   
+    display: flex;
+    flex-direction: column;
+    
+    height: 80vh; 
+     width: 100vw;
+     justify-content: center;
+     align-items: center;
+     text-align: center;
+    /* background-color: #f2f3f5; */
+    /* box-shadow: 10px 10px 10px 1px rgb(206, 205, 205); */
+   
+}
+/* .no-requests-container{
+    display: flex;
+    flex-direction: row;
+}
+.no-requests-container img{
+    background-color: red;
+    height: 40px;
+    margin-bottom:20rem;
+    margin-left: 20rem;
+} */
+
 @media screen and (max-width:800px)
 {
     .add-sport-form {

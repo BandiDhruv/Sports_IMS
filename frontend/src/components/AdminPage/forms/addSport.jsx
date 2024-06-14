@@ -139,7 +139,7 @@ const AddSport = (props) => {
       />
       {/* Display equipment inputs based on inventory */}
       {sportData.inventory.map((equipment, index) => (
-        <div key={index}>
+        <div key={index} className='remove-form'>
           <input
             type="text"
             name="nameOfSportsEquipment"

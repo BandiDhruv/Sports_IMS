@@ -74,6 +74,10 @@ const getRequestData = {
           if (!inventoryItem) {
             return res.status(404).json({ message: 'Item not found in the inventory' });
           }
+          if(inventoryItem.quantityOfSportsEquipment===0){
+            console.error("inventory can't be negative")
+            return
+          }
           // reqsport.itemQuantity-=1;
           inventoryItem.quantityOfSportsEquipment -= 1;
       
